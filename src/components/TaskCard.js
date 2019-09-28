@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { deleteTask, populateForm } from '../actions/taskActions'
 
 const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
-
   const task = tasks.find(item => `${item.id}` === match.params.id)
   if (!task) {
     return (
@@ -16,7 +15,7 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
   }
 
   const { id, name, locationInput, time, pointsToEarn, img } = task
-  
+
   const deleteTaskHandler = () => {
     deleteTask(id)
     history.push("/task-view")
@@ -71,6 +70,8 @@ const TaskDiv = styled.div`
   padding: 20px;
   background: #50a2a7;
   text-align: left;
+  border-radius: 3px;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
 `;
 
 const ButtonContainer = styled.div`

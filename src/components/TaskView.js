@@ -2,9 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
 
+
 import Task from './Task'
 
 const TaskView = ({ tasks, history }) => {
+
   if (tasks.length === 0) {
     return (
       <TaskViewContainer>
@@ -40,6 +42,7 @@ const TaskViewContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   background: #50a2a7;
+  padding-bottom: 50px;
 `;
 
 const TasksContainer = styled.div`
