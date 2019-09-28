@@ -1,89 +1,83 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import { addUser } from "../actions";
 import { FormContainer, InputError, FormButton } from "./FormStyles";
 
 const Register = ({ errors, touched, isSubmitting }) => {
-    return (
-        <FormContainer bgColor="#50a2a7" >
-            <h1>Register</h1>
-            <Form>
-                <Field name="organization" type="text" placeholder="Organization" />
-                {errors.organization && <InputError>{errors.organization}</InputError>}
-                <Field name="name" type="text" placeholder="Contact Name"/>
-                {errors.name && <InputError>{errors.name}</InputError>}
-                <Field name="phone" type="phone" placeholder="Phone"/>
-                {errors.phone && <InputError>{errors.phone}</InputError>}
-                {touched.phone && <InputError>{touched.phone}</InputError>}
-                <Field name="email" type="email" placeholder="E-mail"/>
-                {errors.email && <InputError>{errors.email}</InputError>}
-                <Field name="address" type="address" placeholder="Address"/>
-                {errors.address && <InputError>{errors.address}</InputError>}
-                <Field name="password" type="password" placeholder="Password"/>
-                {errors.password && <InputError>{errors.password}</InputError>}
-                <FormButton 
-                    disabled={isSubmitting} 
-                    type="submit" 
-                    bgColor="#e9b44c"
-                    hoverColor="#9b2915"
-                >Register</FormButton>
-            </Form>
-        </FormContainer>
-    );
+  return (
+    <FormContainer bgColor="#50a2a7">
+      <h1>Register</h1>
+      <Form>
+        <Field name="organization" type="text" placeholder="Organization" />
+        {errors.organization && <InputError>{errors.organization}</InputError>}
+        <Field name="name" type="text" placeholder="Contact Name" />
+        {errors.name && <InputError>{errors.name}</InputError>}
+        <Field name="phone" type="phone" placeholder="Phone" />
+        {errors.phone && <InputError>{errors.phone}</InputError>}
+        {touched.phone && <InputError>{touched.phone}</InputError>}
+        <Field name="email" type="email" placeholder="E-mail" />
+        {errors.email && <InputError>{errors.email}</InputError>}
+        <Field name="address" type="address" placeholder="Address" />
+        {errors.address && <InputError>{errors.address}</InputError>}
+        <Field name="password" type="password" placeholder="Password" />
+        {errors.password && <InputError>{errors.password}</InputError>}
+        <FormButton
+          disabled={isSubmitting}
+          type="submit"
+          bgColor="#e9b44c"
+          hoverColor="#9b2915"
+        >
+          Register
+        </FormButton>
+      </Form>
+    </FormContainer>
+  );
 };
 
 const FormikRegisterForm = withFormik({
-    mapPropsToValues({ 
-        organization, 
-        name, 
-        phone, 
-        email, 
-        address, 
-        password 
-    }){
-        return {
-            organization: organization || "",
-            name: name || "",
-            phone: phone || "",
-            email: email || "",
-            address: address || "",
-            password: password || ""
-        }
-    }, 
+  mapPropsToValues({ organization, name, phone, email, address, password }) {
+    return {
+      organization: organization || "",
+      name: name || "",
+      phone: phone || "",
+      email: email || "",
+      address: address || "",
+      password: password || ""
+    };
+  },
 
-    validationSchema: Yup.object().shape({
-        organization: Yup.string()
-            .required("Please enter an organization."),
-        name: Yup.string()
-            .required("Please enter a contact name."),
-        phone: Yup.number()
-            .typeError("Please enter a valid phone number.")
-            .required("Please enter a phone number."),
-        email: Yup.string()
-            .required("Please enter an e-mail."),
-        address: Yup.string()
-            .required("Please enter an address."),
-        password: Yup.string()
-            .min(6, "Your password must be a minimum of 6 characters.")
-            .required("Please enter a password.")
-    }),
+  validationSchema: Yup.object().shape({
+    organization: Yup.string().required("Please enter an organization."),
+    name: Yup.string().required("Please enter a contact name."),
+    phone: Yup.number()
+      .typeError("Please enter a valid phone number.")
+      .required("Please enter a phone number."),
+    email: Yup.string().required("Please enter an e-mail."),
+    address: Yup.string().required("Please enter an address."),
+    password: Yup.string()
+      .min(6, "Your password must be a minimum of 6 characters.")
+      .required("Please enter a password.")
+  }),
 
-    handleSubmit(values, { props, resetForm }){
-        console.log(values)
-        values.name = "";
-        values.phone = "";
-        props.addUser(values);
-        resetForm();
-    }
+  handleSubmit(values, { props, resetForm }) {
+    console.log(values);
+    values.name = "";
+    values.phone = "";
+    props.addUser(values);
+    resetForm();
+  }
 })(Register);
 
 const mapStateToProps = state => {
-	console.log(state);
+  console.log(state);
 
-	return state;
-}
+  return state;
+};
 
-export default connect(mapStateToProps, { addUser })(FormikRegisterForm);
+export default connect(
+  mapStateToProps,
+  { addUser }
+)(FormikRegisterForm);

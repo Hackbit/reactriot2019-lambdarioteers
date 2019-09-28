@@ -2,22 +2,38 @@ import React, { useState, withRouter } from "react";
 import styled from "styled-components";
 
 const Task = ({ task, history }) => {
-  const { id, name, locationInput, time, pointsToEarn, img, description } = task;
+  const {
+    id,
+    name,
+    locationInput,
+    time,
+    pointsToEarn,
+    img,
+    description
+  } = task;
   const [isVolunteer, setIsVolunteer] = useState(true);
   return (
     <TaskContainer
-    onClick={() => {
-      history.push(`/task/${id}`);
-    }}
+      onClick={() => {
+        history.push(`/task/${id}`);
+      }}
     >
       <TaskCard>
         <Top>
-          {isVolunteer && <AddTaskButton onClick={(e) => {e.stopPropagation()}}><i class="fas fa-plus"></i></AddTaskButton>}
+          {isVolunteer && (
+            <AddTaskButton
+              onClick={e => {
+                e.stopPropagation();
+              }}
+            >
+              <i class="fas fa-plus"></i>
+            </AddTaskButton>
+          )}
           <div className="img-container">
             <img
               src={img ? img : "https://via.placeholder.com/150"}
               alt="img url"
-              />
+            />
           </div>
           <div className="text-container">
             <h1>{name}</h1>
@@ -47,7 +63,7 @@ const TaskCard = styled.div`
   padding: 15px;
   cursor: pointer;
   border-radius: 3px;
-  box-shadow: 8px 8px 10px 3px rgba(0, 0, 0, .8);
+  box-shadow: 8px 8px 10px 3px rgba(0, 0, 0, 0.8);
 `;
 
 const Top = styled.div`
@@ -87,11 +103,10 @@ const AddTaskButton = styled.button`
   padding: 4px;
   font-size: 1.3rem;
   background: none;
-  transition: all .3s;
+  transition: all 0.3s;
   cursor: pointer;
 
   &:hover {
-      background: #e4d6a7;
+    background: #e4d6a7;
   }
 `;
-
