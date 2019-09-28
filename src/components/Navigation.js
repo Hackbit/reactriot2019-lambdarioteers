@@ -1,7 +1,7 @@
-import React, { useState } from "react"
-import { NavLink } from "react-router-dom"
-import HamburgerMenu from "react-hamburger-menu"
-import styled from "styled-components"
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import HamburgerMenu from "react-hamburger-menu";
+import styled from "styled-components";
 
 const Navigation = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,9 +33,8 @@ const Navigation = () => {
         </>
         );
     }
-    
 export default Navigation;
-    
+
 const NavigationContainer = styled.div`
     cursor: pointer;
     position: absolute;
@@ -59,7 +58,7 @@ const NavLinkContainer = styled.div`
     top: 0;
     left: 0;
     z-index: 0;
-    transform: translateY(${props => props.isOpen ? "0" : "-200"}px);
+    transform: translateY(${props => (props.isOpen ? "0" : "-200")}px);
     transition: all .4s;
 
     a {
