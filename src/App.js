@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
 import LandingPage from "./components/LandingPage";
-
 import Navigation from "./components/Navigation";
 import Register from "./components/Register";
 import TaskView from "./components/TaskView";

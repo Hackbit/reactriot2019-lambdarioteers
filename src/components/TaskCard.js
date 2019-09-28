@@ -38,10 +38,12 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
     <TaskContainer>
       <TaskDiv>
         <h1>{name}</h1>
-        <img
-          src={img ? img : "https://via.placeholder.com/150"}
-          alt="img url"
-        />
+        <ImageContainer>
+          <img
+            src={img ? img : "https://via.placeholder.com/150"}
+            alt="img url"
+          />
+        </ImageContainer>
         <p>Location: {locationInput}</p>
         <p>Time: {time}</p>
         <p>Description: {description}</p>
@@ -70,6 +72,7 @@ const TaskContainer = styled.div`
   width: 100%;
   background: #e9b44c;
   padding-top: 70px;
+
   button {
     cursor: pointer;
   }
@@ -83,8 +86,15 @@ const TaskDiv = styled.div`
   text-align: left;
   border-radius: 3px;
   box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.8);
+`;
+
+const ImageContainer = styled.div`
   overflow: hidden;
-  object-fit: contain;
+
+  img {
+    max-width: 100%;
+    object-fit: contain;
+  }
 `;
 
 const ButtonContainer = styled.div`
