@@ -1,11 +1,26 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import styled from 'styled-components'
 
-const TaskView = () => {
+import Task from './Task'
+
+const TaskView = ({ tasks }) => {
+  if (tasks.length === 0) {
+    return <h1>Add new Task</h1>
+  }
   return (
-    <div>
-      TaskView
-    </div>
+    <TaskViewContainer>
+      {tasks.map(task => {
+        return <Task key={task.id} task={task}/> 
+      })}
+    </TaskViewContainer>
   )
 }
+const mapStateToProps = (state) => {
+  return {
+    tasks: state.taskReducer.tasks
+  }
+}
 
-export default TaskView
+const TaskViewContainer = styled.div``
+export default connect(mapStateToProps)(TaskView)

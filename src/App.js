@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Route path="/register" component={Register} />
-      <Route path="/tasks" component={TaskView} />
+      <Route path="/task-view" component={TaskView} />
     </div>
   );
 }
