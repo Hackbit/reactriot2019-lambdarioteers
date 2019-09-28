@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
-import { Form, Field, withFormik } from "formik";
-import * as Yup from "yup";
-import { connect } from "react-redux";
+import React, { useEffect } from 'react'
+import { Form, Field ,withFormik } from 'formik'
+import * as Yup from 'yup'
+import { connect } from 'react-redux'
 
 import { addTask, updateTask, cancel } from "../actions/taskActions";
+import { FormContainer, FormButton, InputError } from "./FormStyles"; 
 
 const TaskForm = ({
   status,
@@ -41,59 +42,80 @@ const TaskForm = ({
   };
 
   return (
-    <Form>
-      <Field
-        component="input"
-        name="name"
-        type="text"
-        placeholder="Name of task"
-      />
-      <Field
-        component="input"
-        name="locationInput"
-        type="text"
-        placeholder="Location"
-      />
-      <Field
-        component="input"
-        name="pointsToEarn"
-        type="number"
-        placeholder="Points to earn"
-      />
-      <Field component="input" name="time" type="text" placeholder="Time" />
-      <Field component="input" name="img" type="text" placeholder="Image" />
-      <Field
-        component="textarea"
-        name="description"
-        type="text"
-        placeholder="Description"
-      />
-      <button type="submit" disabled={isSubmitting}>
-        {isUpdating ? "Updating" : "Add new task"}
-      </button>
-      <button onClick={cancelBtn}>Cancel</button>
-    </Form>
+    <FormContainer bgColor="#e9b44c">
+      <h1>Create a new task</h1>
+      <Form>
+        <Field
+          component="input"
+          name="name"
+          type="text"
+          placeholder="Name of task"
+        />
+        <Field
+          component="input"
+          name="locationInput"
+          type="text"
+          placeholder="Location"
+        />
+        <Field 
+          component="input" 
+          name="time" 
+          type="text" 
+          placeholder="Time" 
+        />
+        <Field
+          component="input"
+          name="pointsToEarn"
+          type="number"
+          placeholder="Points to earn"
+        />
+        <Field 
+          component="input" 
+          name="img" 
+          type="text" 
+          placeholder="Image" 
+        />
+        <Field
+          component="textarea"
+          name="description"
+          type="text"
+          placeholder="Description"
+        />
+        <FormButton 
+          type="submit" 
+          disabled={isSubmitting}
+          bgColor="#9b2915"
+          hoverColor="#1c110a"
+        > {isUpdating ? "Updating" : "Add new task"}</FormButton>
+        <FormButton 
+          onClick={cancelBtn}
+          bgColor="#9b2915"
+          hoverColor="#1c110a"
+        >Cancel</FormButton>
+      </Form>
+    </FormContainer>
   );
 };
 
 const TaskFormWithFormik = withFormik({
-  mapPropsToValues({
-    name,
-    locationInput,
-    pointsToEarn,
+  mapPropsToValues({ 
+    name, 
+    locationInput, 
     time,
-    img,
-    description
+    pointsToEarn, 
+    img, 
+    description 
   }) {
     return {
       name: name || "",
       locationInput: locationInput || "",
+      time: time || "",
       pointsToEarn: pointsToEarn || "",
       img: img || "",
       description: description || "",
-      time: time || ""
     };
   },
+
   validationSchema: Yup.object().shape({
     name: Yup.string(),
     time: Yup.string(),
@@ -102,6 +124,7 @@ const TaskFormWithFormik = withFormik({
     img: Yup.string(),
     description: Yup.string()
   }),
+
   handleSubmit(values, { setStatus }) {
     setStatus(values);
   }
