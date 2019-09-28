@@ -21,7 +21,11 @@ const Task = ({ task, history }) => {
       <TaskCard>
         <Top>
           {isVolunteer && (
-            <AddTaskButton>
+            <AddTaskButton
+              onClick={e => {
+                e.stopPropagation();
+              }}
+            >
               <i class="fas fa-plus"></i>
             </AddTaskButton>
           )}

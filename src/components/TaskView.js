@@ -1,38 +1,38 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import styled from 'styled-components'
+import React from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
-
-import Task from './Task'
+import Task from "./Task";
 
 const TaskView = ({ tasks, history }) => {
-
   if (tasks.length === 0) {
     return (
       <TaskViewContainer>
         <h1>No Current Tasks</h1>
-        <AddTaskButton onClick={() => history.push("/task-form")}>+ New Task</AddTaskButton>
+        <AddTaskButton onClick={() => history.push("/task-form")}>
+          + New Task
+        </AddTaskButton>
       </TaskViewContainer>
-    )
+    );
   }
   return (
     <TaskViewContainer>
       <h1>Available Tasks</h1>
       <TasksContainer>
         {tasks.map(task => {
-          return <Task key={task.id} task={task} history={history}/> 
+          return <Task key={task.id} task={task} history={history} />;
         })}
       </TasksContainer>
     </TaskViewContainer>
-  )
-}
-const mapStateToProps = (state) => {
+  );
+};
+const mapStateToProps = state => {
   return {
     tasks: state.taskReducer.tasks
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(TaskView)
+export default connect(mapStateToProps)(TaskView);
 
 const TaskViewContainer = styled.div`
   display: flex;
@@ -56,11 +56,11 @@ const AddTaskButton = styled.button`
   padding: 14px;
   font-size: 1rem;
   background: #e9b44c;
-  transition: all .3s;
+  transition: all 0.3s;
   margin: 12px 0;
 
   &:hover {
-      background: #9b2915;
-      color: white;
+    background: #9b2915;
+    color: white;
   }
 `;
