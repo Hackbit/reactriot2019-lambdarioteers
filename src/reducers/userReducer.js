@@ -10,6 +10,8 @@ const initial_state = {
 const userReducer = (state = initial_state, action) => {
 	let newUsers;
 
+	console.log("adding user")
+
 	switch(action.type) {
 		case ADDING_USER:
 			return { ...state, users: [...state.users, action.payload ]};

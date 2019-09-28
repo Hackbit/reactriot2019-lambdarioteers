@@ -4,6 +4,9 @@ import './App.css';
 import LandingPage from "./components/LandingPage";
 
 import Register from "./components/Register";
+import TaskView from "./components/TaskView"
+import TaskForm from './components/TaskForm';
+import TaskCard from "./components/TaskCard"
 
 function App() {
   return (
@@ -11,6 +14,9 @@ function App() {
       <Route path="/" exact component={LandingPage} />
       <Route path="/register" component={Register} />
       <Route path="login" component={LandingPage} />
+      <Route path="/task-view" component={TaskView} />
+      <Route path="/task-form" component={TaskForm} />
+      <Route path="/task/:id" component={TaskCard}/>
     </div>
   );
 }

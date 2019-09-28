@@ -20,7 +20,7 @@ const LandingPage = (props) => {
 				<Button onClick={e => props.history.push("register")}>Register</Button>
 			</Top>
 			<Bottom>
-				<Button>View</Button>
+				<Button onClick={e => props.history.push("task-view")}>View</Button>
 			</Bottom>
 			</ButtonWrapper>
 		</LandingWrapper> 

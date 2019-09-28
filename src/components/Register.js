@@ -2,6 +2,9 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import { connect } from 'react-redux';
+
+import { addUser } from "../actions";
 
 const Register = ({ errors, touched, isSubmitting }) => {
     return (
@@ -87,15 +90,14 @@ const FormikRegisterForm = withFormik({
             .required("Please enter a password.")
     }),
 
-    handleSubmit(values, { resetForm }){
+    handleSubmit(values, { props, resetForm }){
         console.log(values)
         values.name = "";
         values.phone = "";
+        props.addUser(values);
         resetForm();
     }
 })(Register);
-
-export default FormikRegisterForm;
 
 export const FormContainer = styled.div`
 display: flex;
@@ -155,3 +157,11 @@ border-radius: 3px;
 padding: 3px 0 3px 8px;
 margin-top: -3px;
 `;
+
+const mapStateToProps = state => {
+	console.log(state);
+
+	return state;
+}
+
+export default connect(mapStateToProps, { addUser })(FormikRegisterForm);
