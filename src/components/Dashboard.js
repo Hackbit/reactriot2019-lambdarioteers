@@ -10,7 +10,7 @@ const Dashboard = ({ history }) => {
             <h1>Dashboard</h1>
             {isCharity && <AddTaskButton onClick={() => history.push("/task-form")}>+ New Task</AddTaskButton>}
             <hr />
-            <TaskView />
+            <TaskView history={history} />
         </DashboardWrapper>
     );
 };

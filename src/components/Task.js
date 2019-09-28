@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, withRouter } from "react";
 import styled from "styled-components";
 
 const Task = ({ task, history }) => {
@@ -6,9 +6,9 @@ const Task = ({ task, history }) => {
   const [isVolunteer, setIsVolunteer] = useState(true);
   return (
     <TaskContainer
-      onClick={() => {
-        history.push(`/task/${id}`);
-      }}
+    onClick={() => {
+      history.push(`/task/${id}`);
+    }}
     >
       <TaskCard>
         <Top>
@@ -17,7 +17,7 @@ const Task = ({ task, history }) => {
             <img
               src={img ? img : "https://via.placeholder.com/150"}
               alt="img url"
-            />
+              />
           </div>
           <div className="text-container">
             <h1>{name}</h1>
@@ -31,6 +31,8 @@ const Task = ({ task, history }) => {
     </TaskContainer>
   );
 };
+
+export default Task;
 
 const TaskContainer = styled.div`
   width: 100%;
@@ -92,4 +94,3 @@ const AddTaskButton = styled.button`
   }
 `;
 
-export default Task;
