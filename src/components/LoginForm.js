@@ -1,5 +1,5 @@
 import React from "react";
-import { withFormik, Form, Field, ErrorMessage } from "formik";
+import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
@@ -9,8 +9,7 @@ const LoginForm = ({ setLoggingIn, errors }) => {
 			<Header>
 				Log In
 			</Header>
-			<ButtonWrapper>
-			<Top>
+			<Form>
 				<Field 
                     name="email"
                     type="email"
@@ -24,10 +23,9 @@ const LoginForm = ({ setLoggingIn, errors }) => {
                 />
                 {errors.password && <InputError>{errors.password}</InputError>}
 			<Bottom>
-				<Button type="submit" onClick={() => {setLoggingIn(false)}}>Log In</Button>
+				<Button type="submit">Log In</Button>
 			</Bottom>
-			</Top>
-			</ButtonWrapper>
+			</Form>
         </LandingWrapper> 
     );
 };
@@ -86,15 +84,6 @@ const Button = styled.button`
 	font-weight: bold;
 	font-size: 1.2rem;
 	text-shadow: 2px 2px 2px #1c110a;
-`;
-
-const Top = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-content: center;
-	align-items: center;
-	margin: 10px auto;
-	width: 100%;
 `;
 
 const Bottom = styled.div`

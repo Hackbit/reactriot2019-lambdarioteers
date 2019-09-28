@@ -39,6 +39,12 @@ const Register = ({ errors, touched, isSubmitting }) => {
                     placeholder="Address"
                 />
                 {errors.address && <InputError>{errors.address}</InputError>}
+                <Field 
+                    name="password" 
+                    type="password" 
+                    placeholder="Password"
+                />
+                {errors.password && <InputError>{errors.password}</InputError>}
                 <SubmitButton disabled={isSubmitting} type="submit">Register</SubmitButton>
             </Form>
         </FormContainer>
@@ -46,13 +52,21 @@ const Register = ({ errors, touched, isSubmitting }) => {
 };
 
 const FormikRegisterForm = withFormik({
-    mapPropsToValues({ organization, name, phone, email, address }){
+    mapPropsToValues({ 
+        organization, 
+        name, 
+        phone, 
+        email, 
+        address, 
+        password 
+    }){
         return {
             organization: organization || "",
             name: name || "",
             phone: phone || "",
             email: email || "",
-            address: address || ""
+            address: address || "",
+            password: password || ""
         }
     }, 
 
@@ -67,7 +81,10 @@ const FormikRegisterForm = withFormik({
         email: Yup.string()
             .required("Please enter an e-mail."),
         address: Yup.string()
-            .required("Please enter an address.")
+            .required("Please enter an address."),
+        password: Yup.string()
+            .min(6, "Your password must be a minimum of 6 characters.")
+            .required("Please enter a password.")
     }),
 
     handleSubmit(values, { resetForm }){
@@ -87,7 +104,7 @@ align-items: center;
 flex-direction: column;
 width: 100%;
 height: 100vh;
-background: ${props => props.color};
+background: #50a2a7;
 
 h1 {
     font-size: 2.2rem;
