@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { withRouter } from "react-router-dom";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
 	return (
 		<LandingWrapper>
 			<Header>
@@ -10,7 +11,7 @@ const LandingPage = () => {
 			<ButtonWrapper>
 			<Top>
 				<Button>Login</Button>
-				<Button>Register</Button>
+				<Button onClick={e => props.history.push("register")}>Register</Button>
 			</Top>
 			<Bottom>
 				<Button>View</Button>
@@ -19,15 +20,15 @@ const LandingPage = () => {
 	</LandingWrapper>);
 }
 
-export default LandingPage;
+export default withRouter(LandingPage);
 
 const LandingWrapper = styled.div`
 	height: 100vh;
 	width: 100vw;
-	background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/14962.jpg");
+	background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/lady_medium.jpg") ;
 	background-size: cover;
-	@media(max-width: 500px) {
-		background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/lady_medium.jpg") ;
+	@media(min-width: 500px) {
+		background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/14962.jpg");
 	}
 	overflow: hidden;
 `;

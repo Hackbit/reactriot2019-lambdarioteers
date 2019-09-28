@@ -1,14 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route } from "react-router-dom";
 import './App.css';
 import LandingPage from "./components/LandingPage";
+
+import Register from "./components/Register";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-				<LandingPage/>
-      </header>
+      <Route path="/register" component={Register} />
+      <Route path="/" exact component={LandingPage} />
     </div>
   );
 }
