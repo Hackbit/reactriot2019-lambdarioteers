@@ -5,10 +5,9 @@ import { connect } from 'react-redux'
 import { deleteTask, populateForm } from '../actions/taskActions'
 
 const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
-
   const task = tasks.find(item => `${item.id}` === match.params.id)
   const { id, name, locationInput, time, pointsToEarn, img } = task
-  
+
   const deleteTaskHandler = () => {
     deleteTask(id)
     history.push("/task-view")
