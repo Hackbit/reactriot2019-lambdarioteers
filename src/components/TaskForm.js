@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Form, Field ,withFormik } from 'formik'
 import * as Yup from 'yup'
+import { connect } from 'react-redux'
 
-const TaskForm = ({ status, errors, touched, isSubmitting }) => {
+import { addTask } from '../actions/taskActions'
+
+const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history }) => {
+  useEffect(() => {
+    if (status) {
+      const newTask = {
+        id: Date.now(),
+        ...status
+      }
+      addTask(newTask)
+      history.push('/')
+    }
+  }, [status, addTask])
+
   return (
     <Form>
       <Field component="input" name="name" type="text" placeholder="Name of task"/>
@@ -34,5 +48,5 @@ const TaskFormWithFormik = withFormik({
   }
 })(TaskForm)
 
-export default TaskFormWithFormik
+export default connect(null, { addTask })(TaskFormWithFormik)
 
