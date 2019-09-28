@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import { connect } from 'react-redux'
 
 import { addTask, updateTask, cancel } from "../actions/taskActions";
-import { FormContainer, FormButton, InputError } from "./FormStyles"; 
+import { FormContainer, FormButton, InputError, CancelButton } from "./FormStyles"; 
 
 const TaskForm = ({
   status,
@@ -87,12 +87,12 @@ const TaskForm = ({
           bgColor="#9b2915"
           hoverColor="#1c110a"
         > {isUpdating ? "Updating" : "Add new task"}</FormButton>
-        <FormButton 
+      </Form>
+        <CancelButton 
           onClick={cancelBtn}
           bgColor="#9b2915"
           hoverColor="#1c110a"
-        >Cancel</FormButton>
-      </Form>
+        >Cancel</CancelButton>
     </FormContainer>
   );
 };
