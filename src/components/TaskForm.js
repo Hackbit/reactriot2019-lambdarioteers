@@ -4,6 +4,7 @@ import * as Yup from 'yup'
 import { connect } from 'react-redux'
 
 import { addTask, updateTask, cancel } from '../actions/taskActions'
+import { FormContainer, InputError, FormButton } from "./FormStyles";
 
 const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history, updateTask, isUpdating, id }) => {
   useEffect(() => {
@@ -30,15 +31,27 @@ const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history, upd
   }
 
   return (
-    <Form>
-      <Field component="input" name="name" type="text" placeholder="Name of task"/>
-      <Field component="input" name="locationInput" type="text" placeholder="Location"/>
-      <Field component="input" name="pointsToEarn" type="number" placeholder="Points to earn"/>
-      <Field component="input" name="time" type="text" placeholder="Time"/>
-      <Field component="input" name="img" type="text" placeholder="Image"/>
-      <button type="submit" disabled={isSubmitting}>{isUpdating ? "Updating" : "Add new task"}</button>
-      <button onClick={cancelBtn}>Cancel</button>
-    </Form>
+    <FormContainer bgColor="#e9b44c">
+      <h1>Create New Task</h1>
+      <Form>
+        <Field component="input" name="name" type="text" placeholder="Name of task"/>
+        <Field component="input" name="locationInput" type="text" placeholder="Location"/>
+        <Field component="input" name="pointsToEarn" type="number" placeholder="Points to earn"/>
+        <Field component="input" name="time" type="text" placeholder="Time"/>
+        <Field component="input" name="img" type="text" placeholder="Image"/>
+        <FormButton 
+          type="submit" 
+          disabled={isSubmitting}
+          bgColor="#9b2915"
+          hoverColor="#1c110a"
+        >{isUpdating ? "Updating" : "Add new task"}</FormButton>
+        <FormButton 
+          onClick={cancelBtn}
+          bgColor="#9b2915"
+          hoverColor="#1c110a"
+        >Cancel</FormButton>
+      </Form>
+    </FormContainer>
   )
 }
 
@@ -77,4 +90,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { addTask, updateTask, cancel })(TaskFormWithFormik)
-
