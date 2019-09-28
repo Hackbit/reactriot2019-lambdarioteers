@@ -9,10 +9,6 @@ const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history, upd
   useEffect(() => {
     if (status) {
       if (isUpdating) {
-        console.log({
-          ...status,
-          id
-        })
         updateTask({
           id,
           ...status
