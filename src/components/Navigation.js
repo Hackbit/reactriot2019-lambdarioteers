@@ -12,7 +12,7 @@ const Navigation = () => {
     
     return (
         <>
-            <NavigationContainer onClick={toggleNav}>
+            <NavigationContainer isOpen={isOpen} onClick={toggleNav}>
                 <HamburgerMenu 
                     isOpen={isOpen}
                     strokeWidth={2}
@@ -39,10 +39,15 @@ export default Navigation;
 const NavigationContainer = styled.div`
     cursor: pointer;
     position: absolute;
-    top: 30px;
-    left: 30px;
-    width: 20%;
+    top: 20px;
+    left: 20px;
     z-index: 2;
+    height: 22px;
+    background: ${props => props.isOpen ? "none" : "rgba(228, 214, 167, .8)"};
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 50%;
 `;
 
 const NavLinkContainer = styled.div`
@@ -53,7 +58,6 @@ const NavLinkContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    padding-top: 20px;
     z-index: 0;
     transform: translateY(${props => props.isOpen ? "0" : "-200"}px);
     transition: all .4s;
