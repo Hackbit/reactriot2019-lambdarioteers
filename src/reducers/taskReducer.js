@@ -70,7 +70,13 @@ const taskReducer = (state = initialState, action) => {
     case CANCEL:
       return {
         ...state,
-        isUpdating: false
+        isUpdating: false,
+        id: "",
+        name: "",
+        locationInput: "",
+        time: "",
+        pointsToEarn: null,
+        img: "",
       }
     default:
       return state

@@ -6,6 +6,14 @@ import { deleteTask, populateForm } from '../actions/taskActions'
 
 const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
   const task = tasks.find(item => `${item.id}` === match.params.id)
+  if (!task) {
+    return (
+      <TaskContainer>
+        <h1>Task not found...</h1>
+      </TaskContainer>
+    )
+  }
+
   const { id, name, locationInput, time, pointsToEarn, img } = task
 
   const deleteTaskHandler = () => {
@@ -18,6 +26,8 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
     history.push("/task-form")
   }
 
+  
+ 
   return (
     <TaskContainer>
       <TaskDiv>
