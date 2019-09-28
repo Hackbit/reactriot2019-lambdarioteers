@@ -13,7 +13,7 @@ const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history }) =
         ...status
       }
       addTask(newTask)
-      history.push('/')
+      history.push('/task-view')
     }
   }, [status, addTask, history])
 
@@ -32,14 +32,14 @@ const TaskFormWithFormik = withFormik({
   mapPropsToValues({ name, locationInput, pointsToEarn, img }){
     return {
         name: name || "",
-        location: locationInput || "",
+        locationInput: locationInput || "",
         pointsToEarn: pointsToEarn || "",
         img: img || ""
     }
 }, 
   validationSchema: Yup.object().shape({
     name: Yup.string(),
-    location: Yup.string(),
+    locationInput: Yup.string(),
     pointsToEarn: Yup.number(),
     img: Yup.string()
   }),

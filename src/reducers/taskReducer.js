@@ -5,7 +5,7 @@ const initialState = {
     {
       id: 1,
       name: "Funraiser",
-      location: "East Los Angeles",
+      locationInput: "East Los Angeles",
       time: "9/25/2019",
       pointsToEarn: 25,
       img: ""
