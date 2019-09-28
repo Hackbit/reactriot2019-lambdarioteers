@@ -92,13 +92,21 @@ const TaskForm = ({
 };
 
 const TaskFormWithFormik = withFormik({
-  mapPropsToValues({ name, locationInput, pointsToEarn, img, description }) {
+  mapPropsToValues({
+    name,
+    locationInput,
+    pointsToEarn,
+    time,
+    img,
+    description
+  }) {
     return {
       name: name || "",
       locationInput: locationInput || "",
       pointsToEarn: pointsToEarn || "",
       img: img || "",
-      description: description || ""
+      description: description || "",
+      time: time || ""
     };
   },
   validationSchema: Yup.object().shape({
