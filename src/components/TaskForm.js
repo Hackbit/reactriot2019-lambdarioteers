@@ -15,7 +15,7 @@ const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history }) =
       addTask(newTask)
       history.push('/')
     }
-  }, [status, addTask])
+  }, [status, addTask, history])
 
   return (
     <Form>
