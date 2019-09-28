@@ -68,9 +68,8 @@ export default connect(
 const TaskContainer = styled.div`
   min-height: 100vh;
   width: 100%;
-  background: #e9b44c;
-  padding-top: 40px;
-
+  background: #e9b44c;  
+  padding-top: 70px;
   button {
     cursor: pointer;
   }
