@@ -2,17 +2,33 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-const TaskCard = ({ tasks, match, history }) => {
-  const task = tasks.find(item => `${item.id}` === match.params.id)
+import { deleteTask, populateForm } from '../actions/taskActions'
 
-  const { name, locationInput, time, pointsToEarn, img } = task
+const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
+  const task = tasks.find(item => `${item.id}` === match.params.id)
+  const { id, name, locationInput, time, pointsToEarn, img } = task
+  const deleteTaskHandler = () => {
+    deleteTask(id)
+    history.push("/task-view")
+  }
+  const populateFormHandler = () => {
+    populateForm(task)
+    history.push("/task-form")
+  }
   return (
     <TaskContainer>
-      <h1>{name}</h1>
-      <p>{locationInput}</p>
-      <p>{time}</p>
-      <p>{pointsToEarn}</p>
-      <img src={img} alt="img url"/>
+      <div>
+        <h1>{name}</h1>
+        <p>{locationInput}</p>
+        <p>{time}</p>
+        <p>{pointsToEarn}</p>
+        <img src={img} alt="img url"/>
+      </div>
+      <div>
+        <button onClick={deleteTaskHandler}>Delete</button>
+        <button onClick={populateFormHandler}>Update</button>
+      </div>
+
     </TaskContainer>
   )
 }
@@ -28,5 +44,5 @@ const mapStateToProps = state => {
     tasks: state.taskReducer.tasks
   }
 }
-export default connect(mapStateToProps)(TaskCard)
+export default connect(mapStateToProps, { deleteTask, populateForm })(TaskCard)
 
