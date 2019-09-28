@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Form, Field ,withFormik } from 'formik'
 import * as Yup from 'yup'
 import { connect } from 'react-redux'
-import DatePicker from "react-datepicker";
 
 import { addTask, updateTask, cancel } from "../actions/taskActions";
 import { FormContainer, FormButton, InputError } from "./FormStyles"; 

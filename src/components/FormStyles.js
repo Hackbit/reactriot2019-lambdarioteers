@@ -32,6 +32,7 @@ form {
         font-size: 1rem;
         background: #e4d6a7;
         font-family: 'Arial', sans-serif;
+        color: black;
     }   
 }
 `;

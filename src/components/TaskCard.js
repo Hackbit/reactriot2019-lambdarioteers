@@ -34,7 +34,6 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
 }
 
 const TaskContainer = styled.div`
-  border: 1px solid black;
   padding: 10px;
   cursor: pointer;
   margin-bottom: 30px;

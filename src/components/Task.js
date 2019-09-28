@@ -2,36 +2,59 @@ import React from "react";
 import styled from "styled-components";
 
 const Task = ({ task, history }) => {
-  const { id, name, locationInput, time, pointsToEarn, img } = task;
+  const { 
+    id, 
+    name, 
+    locationInput, 
+    time, 
+    pointsToEarn, 
+    img,
+    description 
+  } = task;
   return (
     <TaskContainer
       onClick={() => {
         history.push(`/task/${id}`);
       }}
     >
-      <Top>
-        <div className="img-container">
-          <img
-            src={img ? img : "https://via.placeholder.com/150"}
-            alt="img url"
-          />
-        </div>
-        <div className="text-container">
-          <h1>{name}</h1>
-          <p>{locationInput}</p>
-          <p>{time}</p>
-        </div>
-      </Top>
-      <p>{pointsToEarn}</p>
+      <TaskCard>
+        <Top>
+          <div className="img-container">
+            <img
+              src={img ? img : "https://via.placeholder.com/150"}
+              alt="img url"
+            />
+          </div>
+          <div className="text-container">
+            <h1>{name}</h1>
+            <p>Location: {locationInput}</p>
+            <p>Time: {time}</p>
+          </div>
+        </Top>
+        <p>Description: {description}</p>
+        <p>Points: {pointsToEarn}</p>
+      </TaskCard>
     </TaskContainer>
   );
 };
 
 const TaskContainer = styled.div`
+  width: 100%;
+`;
+
+const TaskCard = styled.div`
+  width: 80%;
   border: 1px solid black;
-  padding: 10px;
+  margin: 0 auto;
+  background: #e9b44c;
+  text-align: left;
+  padding: 15px;
   cursor: pointer;
-  margin-bottom: 30px;
+  transition: all .3s;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 `;
 
 const Top = styled.div`

@@ -25,7 +25,18 @@ const mapStateToProps = (state) => {
   }
 }
 
-const TaskViewContainer = styled.div``
-const TasksContainer = styled.div``
+const TaskViewContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: #50a2a7;
+`;
+
+const TasksContainer = styled.div`
+  width: 100%;
+`;
 
 export default connect(mapStateToProps)(TaskView)
