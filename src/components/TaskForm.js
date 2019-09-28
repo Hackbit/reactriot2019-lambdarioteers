@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { Form, Field ,withFormik } from 'formik'
 import * as Yup from 'yup'
 import { connect } from 'react-redux'
+import styled from "styled-components";
 
 import { addTask, updateTask, cancel } from '../actions/taskActions'
-import { FormContainer, InputError, FormButton } from "./FormStyles";
 
 const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history, updateTask, isUpdating, id }) => {
   useEffect(() => {
@@ -31,25 +31,15 @@ const TaskForm = ({ status, errors, touched, isSubmitting, addTask, history, upd
   }
 
   return (
-    <FormContainer bgColor="#e9b44c">
-      <h1>Create New Task</h1>
+    <FormContainer>
       <Form>
         <Field component="input" name="name" type="text" placeholder="Name of task"/>
         <Field component="input" name="locationInput" type="text" placeholder="Location"/>
         <Field component="input" name="pointsToEarn" type="number" placeholder="Points to earn"/>
         <Field component="input" name="time" type="text" placeholder="Time"/>
         <Field component="input" name="img" type="text" placeholder="Image"/>
-        <FormButton 
-          type="submit" 
-          disabled={isSubmitting}
-          bgColor="#9b2915"
-          hoverColor="#1c110a"
-        >{isUpdating ? "Updating" : "Add new task"}</FormButton>
-        <FormButton 
-          onClick={cancelBtn}
-          bgColor="#9b2915"
-          hoverColor="#1c110a"
-        >Cancel</FormButton>
+        <FormButton type="submit" disabled={isSubmitting}>{isUpdating ? "Updating" : "Add new task"}</FormButton>
+        <FormButton onClick={cancelBtn}>Cancel</FormButton>
       </Form>
     </FormContainer>
   )
@@ -90,3 +80,52 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { addTask, updateTask, cancel })(TaskFormWithFormik)
+
+const FormContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+width: 100%;
+height: 100vh;
+background: #50a2a7;
+
+h1 {
+    font-size: 2.2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+
+    input {
+        width: 70%;
+        padding: 8px;
+        margin: 12px 0;
+        border: 2px solid transparent;
+        border-radius: 3px;
+        font-size: 1rem;
+        background: #e4d6a7;
+    }   
+}
+`;
+
+const FormButton = styled.button`
+border: none;
+border-radius: 3px;
+width: 76%;
+padding: 14px;
+background: pink;
+font-size: 1rem;
+background: #e9b44c;
+transition: all .3s;
+margin: 12px 0;
+
+&:hover {
+    background: #9b2915;
+    color: white;
+}
+`;

@@ -20,14 +20,18 @@ form {
     align-items: center;
     width: 80%;
 
-    input {
+    input,
+    textarea {
         width: 70%;
+        min-width: 70%;
+        min-height: 35px;
         padding: 8px;
         margin: 12px 0;
         border: 2px solid transparent;
         border-radius: 3px;
         font-size: 1rem;
         background: #e4d6a7;
+        font-family: 'Arial', sans-serif;
     }   
 }
 `;
