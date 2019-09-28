@@ -1,57 +1,69 @@
-import React from 'react'
-import styled from 'styled-components'
-import { connect } from 'react-redux'
+import React from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
 
-import { deleteTask, populateForm } from '../actions/taskActions'
+import { deleteTask, populateForm } from "../actions/taskActions";
 
 const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
-  const task = tasks.find(item => `${item.id}` === match.params.id)
+  const task = tasks.find(item => `${item.id}` === match.params.id);
   if (!task) {
     return (
       <TaskContainer>
         <h1>Task not found...</h1>
       </TaskContainer>
-    )
+    );
   }
 
-  const { id, name, locationInput, time, pointsToEarn, img } = task
+  const {
+    id,
+    name,
+    locationInput,
+    time,
+    pointsToEarn,
+    img,
+    description
+  } = task;
 
   const deleteTaskHandler = () => {
-    deleteTask(id)
-    history.push("/task-view")
-  }
+    deleteTask(id);
+    history.push("/task-view");
+  };
 
   const populateFormHandler = () => {
-    populateForm(task)
-    history.push("/task-form")
-  }
+    populateForm(task);
+    history.push("/task-form");
+  };
 
-  
- 
   return (
     <TaskContainer>
       <TaskDiv>
         <h1>{name}</h1>
-        <img src={img} alt="img url"/>
+        <img
+          src={img ? img : "https://via.placeholder.com/150"}
+          alt="img url"
+        />
         <p>Location: {locationInput}</p>
         <p>Time: {time}</p>
+        <p>Description: {description}</p>
         <p>Points: {pointsToEarn}</p>
       </TaskDiv>
       <ButtonContainer>
         <TaskButton onClick={deleteTaskHandler}>Delete</TaskButton>
         <TaskButton onClick={populateFormHandler}>Update</TaskButton>
       </ButtonContainer>
-
     </TaskContainer>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => {
   return {
     tasks: state.taskReducer.tasks
-  }
-}
-export default connect(mapStateToProps, { deleteTask, populateForm })(TaskCard)
+  };
+};
+export default connect(
+  mapStateToProps,
+  { deleteTask, populateForm }
+)(TaskCard);
 
 const TaskContainer = styled.div`
   min-height: 100vh;
@@ -71,7 +83,9 @@ const TaskDiv = styled.div`
   background: #50a2a7;
   text-align: left;
   border-radius: 3px;
-  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, .8);
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  object-fit: contain;
 `;
 
 const ButtonContainer = styled.div`
@@ -89,12 +103,11 @@ const TaskButton = styled.button`
   background: pink;
   font-size: 1rem;
   background: #e4d6a7;
-  transition: all .3s;
+  transition: all 0.3s;
   margin: 12px 0;
 
   &:hover {
-      background: #9b2915;
-      color: white;
+    background: #9b2915;
+    color: white;
   }
 `;
-
