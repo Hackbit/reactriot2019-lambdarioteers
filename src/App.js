@@ -8,8 +8,9 @@ import Register from "./components/Register";
 function App() {
   return (
     <div className="App">
-      <Route path="/register" component={Register} />
       <Route path="/" exact component={LandingPage} />
+      <Route path="/register" component={Register} />
+      <Route path="login" component={LandingPage} />
     </div>
   );
 }
