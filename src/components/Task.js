@@ -12,7 +12,7 @@ const Task = ({ task, history }) => {
     >
       <TaskCard>
         <Top>
-          {isVolunteer && <AddTaskButton><i class="fas fa-plus"></i></AddTaskButton>}
+          {isVolunteer && <AddTaskButton onClick={(e) => {e.stopPropagation()}}><i class="fas fa-plus"></i></AddTaskButton>}
           <div className="img-container">
             <img
               src={img ? img : "https://via.placeholder.com/150"}
