@@ -3,7 +3,7 @@ import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
 
-import { addTask } from "../actions/taskActions";
+import { addTask, updateTask, cancel } from "../actions/taskActions";
 
 const TaskForm = ({
   status,
@@ -11,18 +11,34 @@ const TaskForm = ({
   touched,
   isSubmitting,
   addTask,
-  history
+  history,
+  updateTask,
+  isUpdating,
+  cancel,
+  id
 }) => {
   useEffect(() => {
     if (status) {
-      const newTask = {
-        id: Date.now(),
-        ...status
-      };
-      addTask(newTask);
+      if (isUpdating) {
+        updateTask({
+          id,
+          ...status
+        });
+      } else {
+        const newTask = {
+          id: Date.now(),
+          ...status
+        };
+        addTask(newTask);
+      }
       history.push("/task-view");
     }
-  }, [status, addTask, history]);
+  }, [status, addTask, history, id, isUpdating, isSubmitting, updateTask]);
+
+  const cancelBtn = () => {
+    cancel();
+    history.goBack();
+  };
 
   return (
     <Form>
@@ -39,19 +55,23 @@ const TaskForm = ({
         placeholder="Location"
       />
       <Field
-        component="textarea"
-        name="description"
-        type="text"
-        placeholder="Describe task"
-      />
-      <Field
         component="input"
         name="pointsToEarn"
         type="number"
         placeholder="Points to earn"
       />
+      <Field component="input" name="time" type="text" placeholder="Time" />
       <Field component="input" name="img" type="text" placeholder="Image" />
-      <button disabled={isSubmitting}>Add new task</button>
+      <Field
+        component="textarea"
+        name="description"
+        type="text"
+        placeholder="Description"
+      />
+      <button type="submit" disabled={isSubmitting}>
+        {isUpdating ? "Updating" : "Add new task"}
+      </button>
+      <button onClick={cancelBtn}>Cancel</button>
     </Form>
   );
 };
@@ -71,7 +91,8 @@ const TaskFormWithFormik = withFormik({
     time: Yup.string(),
     locationInput: Yup.string(),
     pointsToEarn: Yup.number(),
-    img: Yup.string()
+    img: Yup.string(),
+    description: Yup.string()
   }),
   handleSubmit(values, { setStatus }) {
     setStatus(values);
@@ -80,5 +101,5 @@ const TaskFormWithFormik = withFormik({
 
 export default connect(
   null,
-  { addTask }
+  { addTask, updateTask, cancel }
 )(TaskFormWithFormik);
