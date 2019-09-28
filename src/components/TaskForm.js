@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { Form, Field ,withFormik } from 'formik'
-import * as Yup from 'yup'
-import { connect } from 'react-redux'
+import React, { useEffect } from "react";
+import { Form, Field, withFormik } from "formik";
+import * as Yup from "yup";
+import { connect } from "react-redux";
 
 import { addTask, updateTask, cancel } from "../actions/taskActions";
-import { FormContainer, FormButton, InputError } from "./FormStyles"; 
+import { FormContainer, FormButton, InputError } from "./FormStyles";
 
 const TaskForm = ({
   status,
@@ -40,7 +40,7 @@ const TaskForm = ({
     cancel();
     history.goBack();
   };
-  console.log(isUpdating)
+  console.log(isUpdating);
   return (
     <FormContainer bgColor="#e9b44c">
       <h1>Create a new task</h1>
@@ -57,54 +57,45 @@ const TaskForm = ({
           type="text"
           placeholder="Location"
         />
-        <Field 
-          component="input" 
-          name="time" 
-          type="text" 
-          placeholder="Time" 
-        />
+        <Field component="input" name="time" type="text" placeholder="Time" />
         <Field
           component="input"
           name="pointsToEarn"
           type="number"
           placeholder="Points to earn"
         />
-        <Field 
-          component="input" 
-          name="img" 
-          type="text" 
-          placeholder="Image" 
-        />
+        <Field component="input" name="img" type="text" placeholder="Image" />
         <Field
           component="textarea"
           name="description"
           type="text"
           placeholder="Description"
         />
-        <FormButton 
-          type="submit" 
+        <FormButton
+          type="submit"
           disabled={isSubmitting}
           bgColor="#9b2915"
           hoverColor="#1c110a"
-        > {isUpdating ? "Updating" : "Add new task"}</FormButton>
-        <FormButton 
-          onClick={cancelBtn}
-          bgColor="#9b2915"
-          hoverColor="#1c110a"
-        >Cancel</FormButton>
+        >
+          {" "}
+          {isUpdating ? "Update task" : "Add new task"}
+        </FormButton>
+        <FormButton onClick={cancelBtn} bgColor="#9b2915" hoverColor="#1c110a">
+          Cancel
+        </FormButton>
       </Form>
     </FormContainer>
   );
 };
 
 const TaskFormWithFormik = withFormik({
-  mapPropsToValues({ 
-    name, 
-    locationInput, 
+  mapPropsToValues({
+    name,
+    locationInput,
     time,
-    pointsToEarn, 
-    img, 
-    description 
+    pointsToEarn,
+    img,
+    description
   }) {
     return {
       name: name || "",
@@ -112,7 +103,7 @@ const TaskFormWithFormik = withFormik({
       time: time || "",
       pointsToEarn: pointsToEarn || "",
       img: img || "",
-      description: description || "",
+      description: description || ""
     };
   },
 
@@ -138,9 +129,10 @@ const mapStateToProps = state => {
     locationInput: state.taskReducer.locationInput,
     time: state.taskReducer.time,
     points: state.taskReducer.pointsToEarn,
-    img: state.taskReducer.img
-  }
-}
+    img: state.taskReducer.img,
+    description: state.taskReducer.description
+  };
+};
 
 export default connect(
   mapStateToProps,
