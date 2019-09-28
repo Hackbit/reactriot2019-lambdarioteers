@@ -1,13 +1,13 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import "./App.css";
-import LandingPage from "./components/LandingPage";
-import Navigation from "./components/Navigation";
-import Register from "./components/Register";
-import TaskView from "./components/TaskView";
-import TaskForm from "./components/TaskForm";
-import TaskCard from "./components/TaskCard";
-import Dashboard from "./components/Dashboard";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import './App.css';
+import LandingPage from './components/LandingPage';
+import Navigation from './components/Navigation';
+import Register from './components/Register';
+import TaskView from './components/TaskView';
+import TaskForm from './components/TaskForm';
+import TaskCard from './components/TaskCard';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (

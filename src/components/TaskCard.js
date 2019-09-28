@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
+import React from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-import { deleteTask, populateForm } from "../actions/taskActions";
+import { deleteTask, populateForm } from '../actions/taskActions';
 
 const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
   const task = tasks.find(item => `${item.id}` === match.params.id);
@@ -26,12 +26,12 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
 
   const deleteTaskHandler = () => {
     deleteTask(id);
-    history.push("/task-view");
+    history.push('/task-view');
   };
 
   const populateFormHandler = () => {
     populateForm(task);
-    history.push("/task-form");
+    history.push('/task-form');
   };
 
   return (
@@ -40,7 +40,7 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
         <h1>{name}</h1>
         <ImageContainer>
           <img
-            src={img ? img : "https://via.placeholder.com/150"}
+            src={img ? img : 'https://via.placeholder.com/150'}
             alt="img url"
           />
         </ImageContainer>

@@ -1,5 +1,5 @@
-import React, { useState, withRouter } from "react";
-import styled from "styled-components";
+import React, { useState, withRouter } from 'react';
+import styled from 'styled-components';
 
 const Task = ({ task, history }) => {
   const {
@@ -31,7 +31,7 @@ const Task = ({ task, history }) => {
           )}
           <div className="img-container">
             <img
-              src={img ? img : "https://via.placeholder.com/150"}
+              src={img ? img : 'https://via.placeholder.com/150'}
               alt="img url"
             />
           </div>

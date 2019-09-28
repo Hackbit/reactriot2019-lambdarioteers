@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import Task from "./Task";
+import Task from './Task';
 
 const TaskCarousel = props => {
   let [curTask, setCurTask] = useState(0);
