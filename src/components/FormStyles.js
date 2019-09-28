@@ -42,7 +42,6 @@ border: none;
 border-radius: 3px;
 width: 76%;
 padding: 14px;
-background: pink;
 font-size: 1rem;
 background: ${props => props.bgColor};
 transition: all .3s;
