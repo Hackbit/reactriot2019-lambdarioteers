@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Form, Field ,withFormik } from 'formik'
 import * as Yup from 'yup'
 import { connect } from 'react-redux'
+import DatePicker from "react-datepicker";
 
 import { addTask, updateTask, cancel } from "../actions/taskActions";
 import { FormContainer, FormButton, InputError } from "./FormStyles"; 
@@ -57,6 +58,12 @@ const TaskForm = ({
           type="text"
           placeholder="Location"
         />
+        <Field 
+          component="input" 
+          name="time" 
+          type="text" 
+          placeholder="Time" 
+        />
         <Field
           component="input"
           name="pointsToEarn"
@@ -92,23 +99,24 @@ const TaskForm = ({
 };
 
 const TaskFormWithFormik = withFormik({
-  mapPropsToValues({
-    name,
-    locationInput,
-    pointsToEarn,
+  mapPropsToValues({ 
+    name, 
+    locationInput, 
     time,
-    img,
-    description
+    pointsToEarn, 
+    img, 
+    description 
   }) {
     return {
       name: name || "",
       locationInput: locationInput || "",
+      time: time || "",
       pointsToEarn: pointsToEarn || "",
       img: img || "",
       description: description || "",
-      time: time || ""
     };
   },
+
   validationSchema: Yup.object().shape({
     name: Yup.string(),
     time: Yup.string(),
@@ -117,6 +125,7 @@ const TaskFormWithFormik = withFormik({
     img: Yup.string(),
     description: Yup.string()
   }),
+
   handleSubmit(values, { setStatus }) {
     setStatus(values);
   }
