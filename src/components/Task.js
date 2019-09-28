@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Task = ({ task, history }) => {
-  const { 
-    id, 
-    name, 
-    locationInput, 
-    time, 
-    pointsToEarn, 
-    img,
-    description 
-  } = task;
+  const { id, name, locationInput, time, pointsToEarn, img, description } = task;
   const [isVolunteer, setIsVolunteer] = useState(true);
   return (
     <TaskContainer
@@ -20,7 +12,7 @@ const Task = ({ task, history }) => {
     >
       <TaskCard>
         <Top>
-          {isVolunteer && <AddTaskButton>+</AddTaskButton>}
+          {isVolunteer && <AddTaskButton><i class="fas fa-plus"></i></AddTaskButton>}
           <div className="img-container">
             <img
               src={img ? img : "https://via.placeholder.com/150"}
@@ -89,16 +81,14 @@ const AddTaskButton = styled.button`
   right: 50px;
   border: none;
   border-radius: 3px;
-  // width: 76%;
   padding: 4px;
-  font-size: 1rem;
-  background: #e4d6a7;
+  font-size: 1.3rem;
+  background: none;
   transition: all .3s;
-  margin: 12px 0;
+  cursor: pointer;
 
   &:hover {
-      background: #9b2915;
-      color: white;
+      background: #e4d6a7;
   }
 `;
 
