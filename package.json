@@ -2,6 +2,9 @@
   "name": "reactriot2019-lambdarioteers",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+     "prettier": "^1.18.2"
+  },
   "dependencies": {
     "formik": "^1.5.8",
     "node-sass": "^4.12.0",
