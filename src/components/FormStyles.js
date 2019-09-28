@@ -53,6 +53,10 @@ margin: 12px 0;
 }
 `;
 
+export const CancelButton = styled(FormButton)`
+    width: 61%;
+`
+
 export const InputError = styled.p`
 font-size: .8rem;
 background: #9b2915;
