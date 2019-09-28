@@ -2,6 +2,9 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import { connect } from 'react-redux';
+
+import { addUser } from "../actions";
 
 const FormContainer = styled.div`
     display: flex;
@@ -129,12 +132,19 @@ const FormikRegisterForm = withFormik({
             .required("Please enter an address.")
     }),
 
-    handleSubmit(values, { resetForm }){
+    handleSubmit(values, { props, resetForm }){
         console.log(values)
         values.name = "";
         values.phone = "";
+        props.addUser(values);
         resetForm();
     }
 })(Register);
 
-export default FormikRegisterForm;
+const mapStateToProps = state => {
+	console.log(state);
+
+	return state;
+}
+
+export default connect(mapStateToProps, { addUser })(FormikRegisterForm);
