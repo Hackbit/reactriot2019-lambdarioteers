@@ -6,7 +6,12 @@ import Task from './Task'
 
 const TaskView = ({ tasks, history }) => {
   if (tasks.length === 0) {
-    return <h1>Add new Task</h1>
+    return (
+      <TaskViewContainer>
+        <h1>No Current Tasks</h1>
+        <AddTaskButton onClick={() => history.push("/task-form")}>+ New Task</AddTaskButton>
+      </TaskViewContainer>
+    )
   }
   return (
     <TaskViewContainer>
@@ -25,6 +30,8 @@ const mapStateToProps = (state) => {
   }
 }
 
+export default connect(mapStateToProps)(TaskView)
+
 const TaskViewContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -39,4 +46,18 @@ const TasksContainer = styled.div`
   width: 100%;
 `;
 
-export default connect(mapStateToProps)(TaskView)
+const AddTaskButton = styled.button`
+  border: none;
+  border-radius: 3px;
+  width: 76%;
+  padding: 14px;
+  font-size: 1rem;
+  background: #e9b44c;
+  transition: all .3s;
+  margin: 12px 0;
+
+  &:hover {
+      background: #9b2915;
+      color: white;
+  }
+`;
