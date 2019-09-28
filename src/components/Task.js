@@ -40,6 +40,7 @@ const TaskContainer = styled.div`
 
 const TaskCard = styled.div`
   width: 80%;
+  max-width: 400px;
   margin: 20px auto;
   background: #e9b44c;
   text-align: left;

@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route } from "react-router-dom";
 import './App.css';
 import LandingPage from "./components/LandingPage";
 
+import Navigation from "./components/Navigation";
 import Register from "./components/Register";
-import TaskView from "./components/TaskView"
+import TaskView from "./components/TaskView";
 import TaskForm from './components/TaskForm';
-import TaskCard from "./components/TaskCard"
-import Dashboard from "./components/Dashboard"
+import TaskCard from "./components/TaskCard";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
     <div className="App">
+      <Navigation />
       <Route path="/" exact component={LandingPage} />
       <Route path="/register" component={Register} />
       <Route path="login" component={LandingPage} />
