@@ -40,7 +40,7 @@ const TaskForm = ({
     cancel();
     history.goBack();
   };
-
+  console.log(isUpdating)
   return (
     <FormContainer bgColor="#e9b44c">
       <h1>Create a new task</h1>
@@ -130,7 +130,19 @@ const TaskFormWithFormik = withFormik({
   }
 })(TaskForm);
 
+const mapStateToProps = state => {
+  return {
+    isUpdating: state.taskReducer.isUpdating,
+    id: state.taskReducer.id,
+    name: state.taskReducer.name,
+    locationInput: state.taskReducer.locationInput,
+    time: state.taskReducer.time,
+    points: state.taskReducer.pointsToEarn,
+    img: state.taskReducer.img
+  }
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { addTask, updateTask, cancel }
 )(TaskFormWithFormik);
