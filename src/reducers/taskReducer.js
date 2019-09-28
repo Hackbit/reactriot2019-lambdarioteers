@@ -11,7 +11,8 @@ const initialState = {
       img: ""
     }
   ],
-  isUpating: false,
+  isUpdating: false,
+  id: "",
   name: "",
   locationInput: "",
   time: "",
@@ -35,6 +36,7 @@ const taskReducer = (state = initialState, action) => {
       return {
         ...state,
         isUpdating: true,
+        id: action.payload.id,
         name: action.payload.name,
         locationInput: action.payload.locationInput,
         time: action.payload.time,
@@ -44,7 +46,6 @@ const taskReducer = (state = initialState, action) => {
     case UPDATE_TASK:
       return {
         ...state,
-        isUpdating: false,
         tasks: state.tasks.map(task => {
           if (task.id === action.payload.id) {
             return {
@@ -57,7 +58,14 @@ const taskReducer = (state = initialState, action) => {
             }
           }
           return task
-        })
+        }),
+        isUpdating: false,
+        id: "",
+        name: "",
+        locationInput: "",
+        time: "",
+        pointsToEarn: null,
+        img: "",
       }
     case CANCEL:
       return {
