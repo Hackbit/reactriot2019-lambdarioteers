@@ -22,7 +22,12 @@ const LoginForm = ({ setLoggingIn, errors }) => {
                     placeholder="Password"
                 />
                 {errors.password && <InputError>{errors.password}</InputError>}
+				<Field component="select" name="user_type">
+					<option value="Charity">Charity</option>
+					<option value="Volunteer">Volunteer</option>
+				</Field>
 			<Bottom>
+
 				<Button type="submit">Log In</Button>
 			</Bottom>
 			</Form>
@@ -54,6 +59,8 @@ const FormikLoginForm = withFormik({
 export default FormikLoginForm;
 
 const LandingWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
 	height: 100vh;
 	width: 100vw;
 	background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/lady_medium.jpg") ;
@@ -61,10 +68,23 @@ const LandingWrapper = styled.div`
 	@media(min-width: 500px) {
 		background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/14962.jpg");
 	}
-    overflow: hidden;
+  overflow: hidden;
     
+  form {
+  	display: flex;
+  	flex-direction: column;
+  	max-width: 300px;
+  	margin: 0 auto;
+  	select {
+  		width: 100%;
+  		padding: 0;
+  		margin: 10px auto;
+  		height: 30px;
+  		background-color: #e4d6a7;
+  		border: 1px solid black;
+  	}
     input {
-        width: 70%;
+        width: 90%;
         padding: 8px;
         margin: 12px 0;
         border: 2px solid transparent;
@@ -72,6 +92,7 @@ const LandingWrapper = styled.div`
         font-size: 1rem;
         background: #e4d6a7;
     }   
+  }
 `;
 
 const Button = styled.button`
