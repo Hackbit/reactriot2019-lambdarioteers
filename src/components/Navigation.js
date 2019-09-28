@@ -24,12 +24,12 @@ const Navigation = () => {
                     animationDuration={0.5}
                 />
             </NavigationContainer>
-      
-                <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
-                    <NavLink to="/dashboard">Dashboard</NavLink>
-                    <NavLink to="">Example</NavLink>
-                    <NavLink to="">Log Out</NavLink>
-                </NavLinkContainer>
+    
+            <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink to="">Example</NavLink>
+                <NavLink to="">Log Out</NavLink>
+            </NavLinkContainer>
         </>
         );
     }
