@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { withRouter } from "react-router-dom";
 
 import LoginForm from "./LoginForm";
+import TaskCarousel from './TaskCarousel';
 
 const LandingPage = (props) => {
 	const [loggingIn, setLoggingIn] = useState(false);
@@ -19,6 +20,7 @@ const LandingPage = (props) => {
 				<Button onClick={() => setLoggingIn(true)}>Login</Button>
 				<Button onClick={e => props.history.push("register")}>Register</Button>
 			</Top>
+				<TaskCarousel/>
 			<Bottom>
 				<Button onClick={e => props.history.push("task-view")}>View</Button>
 			</Bottom>
@@ -69,7 +71,7 @@ const Bottom = styled.div`
 	flex-direction: column;
 	align-content: center;
 	align-items: center;
-	margin: 150px auto;
+	margin: 25px auto;
 	width: 100%;
 `
 
