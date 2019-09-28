@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { withRouter } from "react-router-dom";
 
+import LoginForm from "./LoginForm";
+
 const LandingPage = (props) => {
+	const [loggingIn, setLoggingIn] = useState(false);
+
 	return (
+
+		!loggingIn ?
 		<LandingWrapper>
 			<Header>
 				Good Deeds
 			</Header>
 			<ButtonWrapper>
 			<Top>
-				<Button>Login</Button>
+				<Button onClick={() => setLoggingIn(true)}>Login</Button>
 				<Button onClick={e => props.history.push("register")}>Register</Button>
 			</Top>
 			<Bottom>
 				<Button onClick={e => props.history.push("task-view")}>View</Button>
 			</Bottom>
 			</ButtonWrapper>
-	</LandingWrapper>);
+		</LandingWrapper> 
+		: 
+			<LoginForm setLoggingIn={setLoggingIn} />
+	
+	);
 }
 
 export default withRouter(LandingPage);
