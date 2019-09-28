@@ -9,16 +9,11 @@ const TaskCarousel = props => {
   let [tasks, setTasks] = useState(props.tasks);
 
   useEffect(() => {
-    setTimeout(() => setCurTask((curTask + 1) % tasks.length), 3000);
-  }, []);
+    setTimeout(() => setCurTask((curTask + 1) % tasks.length), 6000);
+  }, [curTask]);
 
   return (
-    <div>
-      {tasks &&
-        tasks.map(task => (
-          <Task history={props.history} task={tasks[curTask]} />
-        ))}
-    </div>
+    <div>{tasks && <Task history={props.history} task={tasks[curTask]} />}</div>
   );
 };
 
