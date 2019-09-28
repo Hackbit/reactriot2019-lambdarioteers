@@ -44,13 +44,14 @@ const TaskContainer = styled.div`
 
 const TaskCard = styled.div`
   width: 80%;
-  border: 1px solid black;
   margin: 0 auto;
   background: #e9b44c;
   text-align: left;
   padding: 15px;
   cursor: pointer;
   transition: all .3s;
+  border-radius: 3px;
+  box-shadow: 8px 8px 10px 3px rgba(0, 0, 0, .8);
 
   &:hover {
     transform: scale(1.01);
