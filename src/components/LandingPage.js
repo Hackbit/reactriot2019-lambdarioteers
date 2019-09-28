@@ -26,7 +26,7 @@ const LandingPage = (props) => {
 		</LandingWrapper> 
 		: 
 		<LandingWrapper>
-			<LoginForm />
+			<LoginForm setLoggingIn={setLoggingIn} />
 		</LandingWrapper>
 	
 	);
