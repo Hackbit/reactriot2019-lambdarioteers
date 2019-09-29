@@ -30,7 +30,7 @@ const Navigation = ({ users }) => {
 
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
         <NavLink to="/dashboard">Dashboard</NavLink>
-        {user.user_type === "Volunteer" && <NavLink to="/saved-tasks">Saved Tasks</NavLink>}
+        {/* {user.user_type === "Volunteer" && <NavLink to="/saved-tasks">Saved Tasks</NavLink>} */}
         <NavLink to="">Log Out</NavLink>
       </NavLinkContainer>
     </>

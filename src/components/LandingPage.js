@@ -25,7 +25,7 @@ const LandingPage = props => {
       </ButtonWrapper>
     </LandingWrapper>
   ) : (
-    <LoginForm setLoggingIn={setLoggingIn} />
+    <LoginForm setLoggingIn={setLoggingIn} history={props.history} />
   );
 };
 

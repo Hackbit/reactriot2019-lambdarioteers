@@ -14,7 +14,6 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     img,
     description
   } = task;
-  const [isVolunteer] = useState(true);
   let taskCard = tasks.filter(task => task.id === id);
   let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
 
@@ -31,7 +30,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     >
       <TaskCard>
         <Top>
-          {user.user_type === "Volunteer" && 
+          {/* {user.user_type === "Volunteer" && 
             <AddTaskButton
               onClick={e => {
                 saveTaskCard(e);
@@ -39,7 +38,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
             >
               <i className="fas fa-plus"></i>
             </AddTaskButton>
-          }
+          } */}
           <div className="img-container">
             <img
               src={img ? img : 'https://via.placeholder.com/150'}

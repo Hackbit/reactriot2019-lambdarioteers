@@ -10,11 +10,11 @@ const Dashboard = ({ history, users }) => {
   return (
     <DashboardWrapper>
       <h1>Dashboard</h1>
-      {user.user_type === "Charity" && (
+      {/* {user.user_type === "Charity" && (
         <AddTaskButton onClick={() => history.push('/task-form')}>
           + New Task
         </AddTaskButton>
-      )}
+      )} */}
       <hr />
       <TaskView history={history} />
     </DashboardWrapper>

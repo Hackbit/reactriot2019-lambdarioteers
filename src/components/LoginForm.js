@@ -2,6 +2,7 @@ import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import { connect } from "react-redux"
 
 const LoginForm = ({ setLoggingIn, errors }) => {
   return (
@@ -12,10 +13,6 @@ const LoginForm = ({ setLoggingIn, errors }) => {
         {errors.email && <InputError>{errors.email}</InputError>}
         <Field name="password" type="password" placeholder="Password" />
         {errors.password && <InputError>{errors.password}</InputError>}
-        <Field component="select" name="user_type">
-          <option value="Volunteer">Volunteer</option>
-          <option value="Charity">Charity</option>
-        </Field>
         <Bottom>
           <Button type="submit">Log In</Button>
         </Bottom>
@@ -25,11 +22,10 @@ const LoginForm = ({ setLoggingIn, errors }) => {
 };
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ email, password, user_type }) {
+  mapPropsToValues({ email, password }) {
     return {
       email: email || '',
-      password: password || '',
-      user_type: user_type || 'Volunteer'
+      password: password || ''
     };
   },
 
@@ -38,13 +34,28 @@ const FormikLoginForm = withFormik({
     password: Yup.string().required('Please enter your password.')
   }),
 
-  handleSubmit(values, { resetForm }) {
-    localStorage.setItem('id', Date.now());
-    resetForm();
+  handleSubmit(values, { props, resetForm }) {
+    let user = props.users.filter(user => 
+      (user.email === values.email) && (user.password === values.password)
+      )[0];
+
+      if (user){
+      localStorage.setItem('id', user.id);
+      props.history.push("/dashboard");
+    } else {
+      resetForm();
+    }
   }
 })(LoginForm);
 
-export default FormikLoginForm;
+const mapStateToProps = state => {
+  return { users: state.userReducer.users } 
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(FormikLoginForm);
 
 const LandingWrapper = styled.div`
   display: flex;
