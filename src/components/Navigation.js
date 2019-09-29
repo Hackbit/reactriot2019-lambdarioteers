@@ -27,7 +27,7 @@ const Navigation = ({ users }) => {
           menuClicked={toggleNav}
         />
       </NavigationContainer>
-
+      <div id="hackbit-vote-widget"></div>
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
         {!user && <NavLink to="/">Home</NavLink>}
         {!user && <NavLink to="/register">Register</NavLink>}
@@ -46,7 +46,7 @@ const Navigation = ({ users }) => {
 };
 
 const mapPropsToState = state => {
-  console.log(state)
+  console.log(state);
   return { users: state.userReducer.users };
 };
 

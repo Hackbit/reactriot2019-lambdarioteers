@@ -45,7 +45,16 @@ const TaskForm = ({
 
       history.push('/task-view');
     }
-  }, [status, addTask, history, id, isUpdating, isSubmitting, updateTask, image]);
+  }, [
+    status,
+    addTask,
+    history,
+    id,
+    isUpdating,
+    isSubmitting,
+    updateTask,
+    image
+  ]);
   const uploadImage = async e => {
     const img = e.target.files;
     const data = new FormData();
