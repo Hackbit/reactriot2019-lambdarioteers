@@ -1,4 +1,4 @@
-import { DELETING_USER, ADDING_USER } from "../actions";
+import { DELETING_USER, ADDING_USER } from '../actions';
 
 const initial_state = {
   users: [],
@@ -10,7 +10,7 @@ const initial_state = {
 const userReducer = (state = initial_state, action) => {
   let newUsers;
 
-  console.log("adding user");
+  console.log('adding user');
 
   switch (action.type) {
     case ADDING_USER:
