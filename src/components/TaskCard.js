@@ -31,7 +31,8 @@ const TaskCard = ({
     time,
     pointsToEarn,
     img,
-    description
+    description,
+    user_id
   } = task;
 
   const deleteTaskHandler = () => {
@@ -60,7 +61,7 @@ const TaskCard = ({
         <p>Description: {description}</p>
         <p>Points: {pointsToEarn}</p>
       </TaskDiv>
-      {user && (
+      {user_id === user.id && (
         <ButtonContainer>
           <TaskButton onClick={deleteTaskHandler}>Delete</TaskButton>
           <TaskButton onClick={populateFormHandler}>Update</TaskButton>
