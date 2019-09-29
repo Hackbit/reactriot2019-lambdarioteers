@@ -70,7 +70,8 @@ const taskReducer = (state = initialState, action) => {
               locationInput: action.payload.locationInput,
               time: action.payload.time,
               pointsToEarn: action.payload.pointsToEarn,
-              img: action.payload.img
+              img: action.payload.img,
+              description: action.payload.description
             };
           }
           return task;
