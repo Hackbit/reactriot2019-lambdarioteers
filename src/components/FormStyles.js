@@ -54,6 +54,11 @@ export const FormButton = styled.button`
   }
 `;
 
+export const ImagePreview = styled.img`
+  width: 150px;
+  height: auto;
+`
+
 export const CancelButton = styled(FormButton)`
   width: 61%;
 `;
