@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
-import { Form, Field, withFormik } from "formik";
-import * as Yup from "yup";
-import { connect } from "react-redux";
+import React, { useEffect } from 'react';
+import { Form, Field, withFormik } from 'formik';
+import * as Yup from 'yup';
+import { connect } from 'react-redux';
 
-import { addTask, updateTask, cancel } from "../actions/taskActions";
-import {
-  FormContainer,
-  FormButton,
-  InputError,
-  CancelButton
-} from "./FormStyles";
+import { addTask, updateTask, cancel } from '../actions/taskActions';
+import { FormContainer, FormButton, CancelButton } from './FormStyles';
 
 const TaskForm = ({
   status,
@@ -37,7 +32,7 @@ const TaskForm = ({
         };
         addTask(newTask);
       }
-      history.push("/task-view");
+      history.push('/task-view');
     }
   }, [status, addTask, history, id, isUpdating, isSubmitting, updateTask]);
 
@@ -82,8 +77,8 @@ const TaskForm = ({
           bgColor="#9b2915"
           hoverColor="#1c110a"
         >
-          {" "}
-          {isUpdating ? "Updating" : "Add new task"}
+          {' '}
+          {isUpdating ? 'Updating' : 'Add new task'}
         </FormButton>
       </Form>
       <CancelButton onClick={cancelBtn} bgColor="#9b2915" hoverColor="#1c110a">
@@ -103,12 +98,12 @@ const TaskFormWithFormik = withFormik({
     description
   }) {
     return {
-      name: name || "",
-      locationInput: locationInput || "",
-      time: time || "",
-      pointsToEarn: pointsToEarn || "",
-      img: img || "",
-      description: description || ""
+      name: name || '',
+      locationInput: locationInput || '',
+      time: time || '',
+      pointsToEarn: pointsToEarn || '',
+      img: img || '',
+      description: description || ''
     };
   },
 

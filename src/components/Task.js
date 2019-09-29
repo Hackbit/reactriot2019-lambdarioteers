@@ -1,4 +1,4 @@
-import React, { useState, withRouter } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Task = ({ task, history }) => {
@@ -11,7 +11,7 @@ const Task = ({ task, history }) => {
     img,
     description
   } = task;
-  const [isVolunteer, setIsVolunteer] = useState(true);
+  const [isVolunteer] = useState(true);
   return (
     <TaskContainer
       onClick={() => {
@@ -26,7 +26,7 @@ const Task = ({ task, history }) => {
                 e.stopPropagation();
               }}
             >
-              <i class="fas fa-plus"></i>
+              <i className="fas fa-plus"></i>
             </AddTaskButton>
           )}
           <div className="img-container">
