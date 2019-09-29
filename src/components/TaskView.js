@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Task from './Task';
 
-const TaskView = ({ tasks, history }) => {
+const TaskView = ({ this_user, tasks, history }) => {
   if (tasks.length === 0) {
     return (
       <TaskViewContainer>
@@ -17,10 +17,11 @@ const TaskView = ({ tasks, history }) => {
   }
   return (
     <TaskViewContainer>
-      <h1>Available Tasks</h1>
+      <h1>{this_user ? "Your Organization's Tasks" : 'Available Tasks'}</h1>
       <TasksContainer>
         {tasks.map(task => {
-          return <Task key={task.id} task={task} history={history} />;
+          if (!this_user || (this_user && task.user_id === this_user))
+            return <Task key={task.id} task={task} history={history} />;
         })}
       </TasksContainer>
     </TaskViewContainer>

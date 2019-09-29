@@ -15,7 +15,10 @@ const Dashboard = ({ history, users }) => {
         </AddTaskButton>
       )}
       <hr />
-      <TaskView history={history} />
+      <TaskView
+        this_user={user.user_type == 'Charity' ? user.id : false}
+        history={history}
+      />
     </DashboardWrapper>
   );
 };

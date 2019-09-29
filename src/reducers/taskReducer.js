@@ -1,4 +1,10 @@
-import { ADD_TASK, DELETE_TASK, POPULATE_FORM, UPDATE_TASK, CANCEL } from '../actions/taskActions'
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  POPULATE_FORM,
+  UPDATE_TASK,
+  CANCEL
+} from '../actions/taskActions';
 
 const initialState = {
   tasks: [
@@ -32,26 +38,26 @@ const initialState = {
     
   ],
   isUpdating: false,
-  id: "",
-  name: "",
-  locationInput: "",
-  time: "",
+  id: '',
+  name: '',
+  locationInput: '',
+  time: '',
   pointsToEarn: null,
-  img: ""
-}
+  img: ''
+};
 
 const taskReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_TASK:
       return {
         ...state,
         tasks: [...state.tasks, action.payload]
-      }
+      };
     case DELETE_TASK:
       return {
         ...state,
         tasks: state.tasks.filter(task => task.id !== action.payload)
-      }
+      };
     case POPULATE_FORM:
       return {
         ...state,
@@ -62,7 +68,7 @@ const taskReducer = (state = initialState, action) => {
         time: action.payload.time,
         pointsToEarn: action.payload.pointsToEarn,
         img: action.payload.img
-      }
+      };
     case UPDATE_TASK:
       return {
         ...state,
@@ -75,32 +81,32 @@ const taskReducer = (state = initialState, action) => {
               time: action.payload.time,
               pointsToEarn: action.payload.pointsToEarn,
               img: action.payload.img
-            }
+            };
           }
-          return task
+          return task;
         }),
         isUpdating: false,
-        id: "",
-        name: "",
-        locationInput: "",
-        time: "",
+        id: '',
+        name: '',
+        locationInput: '',
+        time: '',
         pointsToEarn: null,
-        img: "",
-      }
+        img: ''
+      };
     case CANCEL:
       return {
         ...state,
         isUpdating: false,
-        id: "",
-        name: "",
-        locationInput: "",
-        time: "",
+        id: '',
+        name: '',
+        locationInput: '',
+        time: '',
         pointsToEarn: null,
-        img: "",
-      }
+        img: ''
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default taskReducer
+export default taskReducer;
