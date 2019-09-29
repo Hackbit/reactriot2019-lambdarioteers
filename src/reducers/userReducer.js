@@ -26,8 +26,10 @@ const userReducer = (state = initial_state, action) => {
         if (user.id === action.payload.user) tUser = user;
         else return user;
       });
-      if (tUser.tasks) tUser.tasks.push(action.payload.task);
-      else tUser.tasks = [action.payload.task];
+      if (!tUser.tasks) tUser.tasks = [];
+
+      if (!tUser.tasks.includes(action.payload.task))
+        tUser.tasks.push(action.payload.task);
       users = [...users, tUser];
       return { ...state, users };
       case REMOVE_TASK:
