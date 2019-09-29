@@ -29,9 +29,11 @@ const Navigation = ({ users }) => {
       </NavigationContainer>
 
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-        {user.user_type === "Volunteer" && <NavLink to="/saved-tasks">Saved Tasks</NavLink>}
-        <NavLink to="">Log Out</NavLink>
+        {!user && <NavLink to="/">Home</NavLink>}
+        {!user && <NavLink to="/register">Register</NavLink>}
+        {user && <NavLink to="/dashboard">Dashboard</NavLink>}
+        {user && user.user_type === "Volunteer" && <NavLink to="/saved-tasks">Saved Tasks</NavLink>}
+        {user && <NavLink to="/" onClick={() => localStorage.removeItem('id')}>Log Out</NavLink>}
       </NavLinkContainer>
     </>
   );

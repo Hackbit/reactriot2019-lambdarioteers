@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 
 import { deleteTask, populateForm } from "../actions/taskActions";
 
-const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
+const TaskCard = ({ tasks, match, history, deleteTask, populateForm, users }) => {
   const task = tasks.find(item => `${item.id}` === match.params.id);
+  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
+
   if (!task) {
     return (
       <TaskContainer>
@@ -49,17 +51,18 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm }) => {
         <p>Description: {description}</p>
         <p>Points: {pointsToEarn}</p>
       </TaskDiv>
-      <ButtonContainer>
+     { user && <ButtonContainer>
         <TaskButton onClick={deleteTaskHandler}>Delete</TaskButton>
         <TaskButton onClick={populateFormHandler}>Update</TaskButton>
-      </ButtonContainer>
+      </ButtonContainer>}
     </TaskContainer>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    tasks: state.taskReducer.tasks
+    tasks: state.taskReducer.tasks,
+    users: state.userReducer.users
   };
 };
 export default connect(

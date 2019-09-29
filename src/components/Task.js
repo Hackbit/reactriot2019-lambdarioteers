@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { saveTask } from "../actions/userActions";
-import { isUserWhitespacable } from '@babel/types';
 
 const Task = ({ task, history, tasks, users, saveTask }) => {
   const {
@@ -14,7 +13,6 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     img,
     description
   } = task;
-  const [isVolunteer] = useState(true);
   let taskCard = tasks.filter(task => task.id === id);
   let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
 
@@ -31,7 +29,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     >
       <TaskCard>
         <Top>
-          {user.user_type === "Volunteer" && 
+          {user && user.user_type === "Volunteer" && 
             <AddTaskButton
               onClick={e => {
                 saveTaskCard(e);

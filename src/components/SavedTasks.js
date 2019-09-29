@@ -10,9 +10,9 @@ const SavedTasks = ({ users, history }) => {
 
     return (
         <TaskViewContainer>
-            <h1>Saved Tasks</h1>
+            {!currentUser.tasks.length ? <h1>No saved tasks</h1> : <h1>Saved Tasks</h1>}
             {
-                currentUser.tasks.map(task => <Task history={history} task={task} />)
+                currentUser.tasks && currentUser.tasks.map(task => <Task history={history} task={task} />)
             }
         </TaskViewContainer>
     );
