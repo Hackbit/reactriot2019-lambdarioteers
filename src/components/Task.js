@@ -21,23 +21,16 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     saveTask(user.id, taskCard[0].id);
   };
 
+  console.log(user.tasks);
+
   return (
     <TaskContainer
       onClick={() => {
         history.push(`/task/${id}`);
       }}
     >
-      <TaskCard>
+      <TaskCard saved_task={user.tasks.includes(id)}>
         <Top>
-          {user && user.user_type === 'Volunteer' && (
-            <AddTaskButton
-              onClick={e => {
-                saveTaskCard(e);
-              }}
-            >
-              <i className="fas fa-plus"></i>
-            </AddTaskButton>
-          )}
           <div className="img-container">
             <img
               src={img ? img : 'https://via.placeholder.com/150'}
@@ -50,8 +43,26 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
             <p>Time: {time}</p>
           </div>
         </Top>
-        <p>Description: {description}</p>
-        <p>Points: {pointsToEarn}</p>
+        <Bottom>
+          <TextContainer>
+            <p>Description: {description}</p>
+            <p>Points: {pointsToEarn}</p>
+          </TextContainer>
+          {user && user.user_type === 'Volunteer' && (
+            <AddTaskButton
+              saved_task={user.tasks.includes(id)}
+              onClick={e => {
+                saveTaskCard(e);
+              }}
+            >
+              {user.tasks.length > 0 && user.tasks.includes(id) ? (
+                <i className="fas fa-minus"></i>
+              ) : (
+                <i className="fas fa-plus"></i>
+              )}
+            </AddTaskButton>
+          )}
+        </Bottom>
       </TaskCard>
     </TaskContainer>
   );
@@ -75,7 +86,7 @@ const TaskCard = styled.div`
   width: 80%;
   max-width: 400px;
   margin: 20px auto;
-  background: #e9b44c;
+  background: ${props => (props.saved_task ? '#e4d6a7' : '#e9b44c')};
   text-align: left;
   padding: 15px;
   cursor: pointer;
@@ -112,9 +123,20 @@ const Top = styled.div`
   }
 `;
 
+const Bottom = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const AddTaskButton = styled.button`
-  position: absolute;
-  right: 50px;
+  //position: absolute;
+  //right: 50px;
+  align-self: flex-end;
   border: none;
   border-radius: 3px;
   padding: 4px;
@@ -124,6 +146,6 @@ const AddTaskButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: #e4d6a7;
+    background: ${({ saved_tasks }) => (saved_tasks ? '#e4d6a7' : '#e9b44c')};
   }
 `;
