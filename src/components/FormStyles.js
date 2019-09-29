@@ -8,6 +8,7 @@ export const FormContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   background: ${props => props.bgColor};
+  padding-top: 40px;
 
   h1 {
     font-size: 2.2rem;
@@ -34,6 +35,32 @@ export const FormContainer = styled.div`
       background: #e4d6a7;
       font-family: 'Arial', sans-serif;
       color: black;
+    }
+
+    .img-submission {
+      position: relative;
+      background: #e4d6a7;
+      width: 74%;
+      border-radius: 3px;
+
+      @media screen and (min-width: 1000px){
+        width: 72%;
+      }
+      
+      button {
+        position: absolute;
+        top: 16%;
+        left: 25%;
+        right: 25%;
+        width: 40%;
+        min-width: 150px;
+        max-width: 200px;
+        margin: 0 auto;
+        border: none;
+        background: #50a2a7;
+        padding: 15px 20px;
+        cursor: pointer;
+      }
     }
   }
 `;
