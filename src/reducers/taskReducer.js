@@ -11,6 +11,7 @@ const initialState = {
     {
       id: 1,
       name: 'Funraiser',
+      user_id: 1,
       locationInput: 'East Los Angeles',
       time: '9/25/2019',
       pointsToEarn: 25,
