@@ -11,8 +11,6 @@ const Register = ({ errors, touched, isSubmitting }) => {
     <FormContainer bgColor="#50a2a7">
       <h1>Register</h1>
       <Form>
-        <Field name="organization" type="text" placeholder="Organization" />
-        {errors.organization && <InputError>{errors.organization}</InputError>}
         <Field name="name" type="text" placeholder="Contact Name" />
         {errors.name && <InputError>{errors.name}</InputError>}
         <Field name="phone" type="phone" placeholder="Phone" />
@@ -48,17 +46,8 @@ const Register = ({ errors, touched, isSubmitting }) => {
 };
 
 const FormikRegisterForm = withFormik({
-  mapPropsToValues({
-    organization,
-    name,
-    phone,
-    email,
-    address,
-    password,
-    user_type
-  }) {
+  mapPropsToValues({ name, phone, email, address, password, user_type }) {
     return {
-      organization: organization || '',
       name: name || '',
       phone: phone || '',
       email: email || '',
@@ -69,7 +58,6 @@ const FormikRegisterForm = withFormik({
   },
 
   validationSchema: Yup.object().shape({
-    organization: Yup.string().required('Please enter an organization.'),
     name: Yup.string().required('Please enter a contact name.'),
     phone: Yup.number()
       .typeError('Please enter a valid phone number.')
