@@ -6,11 +6,10 @@ import TaskView from './TaskView';
 
 const Dashboard = ({ history, users }) => {
   let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
-    console.log(user)
   return (
     <DashboardWrapper>
       <h1>Dashboard</h1>
-      {user.user_type === "Charity" && (
+      {user && user.user_type === "Charity" && (
         <AddTaskButton onClick={() => history.push('/task-form')}>
           + New Task
         </AddTaskButton>
