@@ -2,7 +2,7 @@ import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
-import { connect } from "react-redux"
+import { connect } from 'react-redux';
 
 const LoginForm = ({ setLoggingIn, errors }) => {
   return (
@@ -35,13 +35,13 @@ const FormikLoginForm = withFormik({
   }),
 
   handleSubmit(values, { props, resetForm }) {
-    let user = props.users.filter(user => 
-      (user.email === values.email) && (user.password === values.password)
-      )[0];
-      console.log(user)
-      if (user){
+    let user = props.users.filter(
+      user => user.email === values.email && user.password === values.password
+    )[0];
+    console.log(user);
+    if (user) {
       localStorage.setItem('id', user.id);
-      props.history.push("/dashboard");
+      props.history.push('/dashboard');
     } else {
       resetForm();
     }
@@ -49,7 +49,7 @@ const FormikLoginForm = withFormik({
 })(LoginForm);
 
 const mapStateToProps = state => {
-  return { users: state.userReducer.users } 
+  return { users: state.userReducer.users };
 };
 
 export default connect(

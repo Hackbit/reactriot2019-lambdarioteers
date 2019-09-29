@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
-import LoginForm from "./LoginForm";
-import TaskCarousel from "./TaskCarousel";
+import LoginForm from './LoginForm';
+import TaskCarousel from './TaskCarousel';
 
 const LandingPage = props => {
   const [loggingIn, setLoggingIn] = useState(false);
@@ -14,13 +14,13 @@ const LandingPage = props => {
       <ButtonWrapper>
         <Top>
           <Button onClick={() => setLoggingIn(true)}>Login</Button>
-          <Button onClick={e => props.history.push("register")}>
+          <Button onClick={e => props.history.push('register')}>
             Register
           </Button>
         </Top>
         <TaskCarousel />
         <Bottom>
-          <Button onClick={e => props.history.push("task-view")}>View</Button>
+          <Button onClick={e => props.history.push('task-view')}>View</Button>
         </Bottom>
       </ButtonWrapper>
     </LandingWrapper>
@@ -34,10 +34,10 @@ export default withRouter(LandingPage);
 const LandingWrapper = styled.div`
   height: 100vh;
   width: 100vw;
-  background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/lady_medium.jpg");
+  background-image: url('https://react-riot.s3.us-east-2.amazonaws.com/lady_medium.jpg');
   background-size: cover;
   @media (min-width: 500px) {
-    background-image: url("https://react-riot.s3.us-east-2.amazonaws.com/14962.jpg");
+    background-image: url('https://react-riot.s3.us-east-2.amazonaws.com/14962.jpg');
   }
   overflow: hidden;
 `;
@@ -81,11 +81,11 @@ const ButtonWrapper = styled.div`
 `;
 
 const Header = styled.h1`
-  @import url("https://fonts.googleapis.com/css?family=Fredoka+One&display=swap");
+  @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
   margin-top: 50px;
   font-size: 3rem;
   color: #1c110a;
   font-weight: bold;
   text-shadow: 2px 2px 5px #e4d6a7;
-  font-family: "Fredoka One", cursive;
+  font-family: 'Fredoka One', cursive;
 `;

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const Navigation = ({ users }) => {
   const [isOpen, setIsOpen] = useState(false);
-  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
+  let user = users.filter(user => user.id === +localStorage.getItem('id'))[0];
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -32,20 +32,26 @@ const Navigation = ({ users }) => {
         {!user && <NavLink to="/">Home</NavLink>}
         {!user && <NavLink to="/register">Register</NavLink>}
         {user && <NavLink to="/dashboard">Dashboard</NavLink>}
-        {user && user.user_type === "Volunteer" && <NavLink to="/saved-tasks">Saved Tasks</NavLink>}
-        {user && <NavLink to="/" onClick={() => localStorage.removeItem('id')}>Log Out</NavLink>}
+        {user && user.user_type === 'Volunteer' && (
+          <NavLink to="/saved-tasks">Saved Tasks</NavLink>
+        )}
+        {user && (
+          <NavLink to="/" onClick={() => localStorage.removeItem('id')}>
+            Log Out
+          </NavLink>
+        )}
       </NavLinkContainer>
     </>
   );
 };
 
 const mapPropsToState = state => {
-    return { users: state.userReducer.users }
+  return { users: state.userReducer.users };
 };
 
 export default connect(
-    mapPropsToState,
-    null
+  mapPropsToState,
+  null
 )(Navigation);
 
 const NavigationContainer = styled.div`

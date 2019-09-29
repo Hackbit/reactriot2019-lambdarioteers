@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 import TaskView from './TaskView';
 
 const Dashboard = ({ history, users }) => {
-  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
+  let user = users.filter(user => user.id === +localStorage.getItem('id'))[0];
   return (
     <DashboardWrapper>
       <h1>Dashboard</h1>
-      {user && user.user_type === "Charity" && (
+      {user && user.user_type === 'Charity' && (
         <AddTaskButton onClick={() => history.push('/task-form')}>
           + New Task
         </AddTaskButton>
@@ -21,12 +21,12 @@ const Dashboard = ({ history, users }) => {
 };
 
 const mapPropsToProps = state => {
-    return { users: state.userReducer.users };
+  return { users: state.userReducer.users };
 };
 
 export default connect(
-    mapPropsToProps,
-    null
+  mapPropsToProps,
+  null
 )(Dashboard);
 
 const DashboardWrapper = styled.div`

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FormContainer = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ export const FormContainer = styled.div`
     width: 80%;
 
     input,
-    textarea, 
+    textarea,
     select {
       width: 70%;
       min-width: 70%;
@@ -32,7 +32,7 @@ export const FormContainer = styled.div`
       border-radius: 3px;
       font-size: 1rem;
       background: #e4d6a7;
-      font-family: "Arial", sans-serif;
+      font-family: 'Arial', sans-serif;
       color: black;
     }
   }
@@ -57,7 +57,7 @@ export const FormButton = styled.button`
 export const ImagePreview = styled.img`
   width: 150px;
   height: auto;
-`
+`;
 
 export const CancelButton = styled(FormButton)`
   width: 61%;

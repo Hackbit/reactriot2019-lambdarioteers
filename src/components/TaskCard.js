@@ -1,13 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
+import React from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-import { deleteTask, populateForm } from "../actions/taskActions";
-import { saveTask } from "../actions/userActions";
+import { deleteTask, populateForm } from '../actions/taskActions';
 
-const TaskCard = ({ tasks, match, history, deleteTask, populateForm, users }) => {
+const TaskCard = ({
+  tasks,
+  match,
+  history,
+  deleteTask,
+  populateForm,
+  users
+}) => {
   const task = tasks.find(item => `${item.id}` === match.params.id);
-  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
+  let user = users.filter(user => user.id === +localStorage.getItem('id'))[0];
 
   if (!task) {
     return (
@@ -28,14 +34,13 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm, users }) =>
   } = task;
 
   const deleteTaskHandler = () => {
-    saveTask(user.id, task)
-    // deleteTask(id);
-    history.push("/task-view");
+    deleteTask(id);
+    history.push('/task-view');
   };
 
   const populateFormHandler = () => {
     populateForm(task);
-    history.push("/task-form");
+    history.push('/task-form');
   };
 
   return (
@@ -44,7 +49,7 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm, users }) =>
         <h1>{name}</h1>
         <ImageContainer>
           <img
-            src={img ? img : "https://via.placeholder.com/150"}
+            src={img ? img : 'https://via.placeholder.com/150'}
             alt="img url"
           />
         </ImageContainer>
@@ -53,10 +58,12 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm, users }) =>
         <p>Description: {description}</p>
         <p>Points: {pointsToEarn}</p>
       </TaskDiv>
-     { user && <ButtonContainer>
-        <TaskButton onClick={deleteTaskHandler}>Delete</TaskButton>
-        <TaskButton onClick={populateFormHandler}>Update</TaskButton>
-      </ButtonContainer>}
+      {user && (
+        <ButtonContainer>
+          <TaskButton onClick={deleteTaskHandler}>Delete</TaskButton>
+          <TaskButton onClick={populateFormHandler}>Update</TaskButton>
+        </ButtonContainer>
+      )}
     </TaskContainer>
   );
 };

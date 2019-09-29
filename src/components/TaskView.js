@@ -1,15 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import styled from "styled-components";
+import React from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import Task from "./Task";
+import Task from './Task';
 
 const TaskView = ({ tasks, history }) => {
   if (tasks.length === 0) {
     return (
       <TaskViewContainer>
         <h1>No Current Tasks</h1>
-        <AddTaskButton onClick={() => history.push("/task-form")}>
+        <AddTaskButton onClick={() => history.push('/task-form')}>
           + New Task
         </AddTaskButton>
       </TaskViewContainer>
