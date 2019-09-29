@@ -70,27 +70,27 @@ const NavigationContainer = styled.div`
 `;
 
 const NavLinkContainer = styled.div`
-    display: flex
-    flex-direction: column;
-    width: 100%;
-    background: #e4d6a7;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    transform: translateY(${props => (props.isOpen ? '0' : '-200')}px);
-    transition: all .4s;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #e4d6a7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transform: translateY(${props => (props.isOpen ? '0' : '-200')}px);
+  transition: all 0.4s;
 
-    a {
-        text-decoration: none;
-        color: black;
-        padding: 20px 0;
-        // background: #e4d6a7;
-        transition: all .3s;
+  a {
+    text-decoration: none;
+    color: black;
+    padding: 20px 0;
+    // background: #e4d6a7;
+    transition: all 0.3s;
 
-        &:hover {
-            background: #9b2915;
-            color: white;
-        }
+    &:hover {
+      background: #9b2915;
+      color: white;
     }
+  }
 `;
