@@ -32,9 +32,8 @@ const userReducer = (state = initial_state, action) => {
       else tUser.tasks.push(action.payload.task);
 
       users = [...users, tUser];
-
       return { ...state, users };
-    default:
+      default:
       return state;
   }
 };
