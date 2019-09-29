@@ -37,14 +37,34 @@ const Task = ({ task, history, tasks, users, toggleTask }) => {
           </div>
           <div className="text-container">
             <h1>{name}</h1>
-            <p><em><u>Location:</u></em> {locationInput}</p>
-            <p><em><u>Date:</u></em> {time}</p>
+            <p>
+              <em>
+                <u>Location:</u>
+              </em>{' '}
+              {locationInput}
+            </p>
+            <p>
+              <em>
+                <u>Date:</u>
+              </em>{' '}
+              {time}
+            </p>
           </div>
         </Top>
         <Bottom>
           <TextContainer>
-            <p><em><u>Description:</u></em> {description}</p>
-            <p><em><u>Points:</u></em> {pointsToEarn}</p>
+            <p>
+              <em>
+                <u>Description:</u>
+              </em>{' '}
+              {description}
+            </p>
+            <p>
+              <em>
+                <u>Points:</u>
+              </em>{' '}
+              {pointsToEarn}
+            </p>
           </TextContainer>
           {user && user.user_type === 'Volunteer' && (
             <AddTaskButton
