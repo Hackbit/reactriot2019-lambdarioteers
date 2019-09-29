@@ -28,6 +28,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
       }}
     >
       <TaskCard>
+        <Top>
           {user && user.user_type === 'Volunteer' && (
             <AddTaskButton
               onClick={e => {

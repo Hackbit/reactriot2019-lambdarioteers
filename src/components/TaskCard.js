@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import { deleteTask, populateForm } from '../actions/taskActions';
+import { removeTask } from "../actions/userActions";
 
 const TaskCard = ({
   tasks,
   match,
   history,
   deleteTask,
+  removeTask,
   populateForm,
   users
 }) => {
@@ -35,6 +37,7 @@ const TaskCard = ({
 
   const deleteTaskHandler = () => {
     deleteTask(id);
+    removeTask(user.id, task.id);
     history.push('/task-view');
   };
 
@@ -76,7 +79,7 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { deleteTask, populateForm, saveTask }
+  { deleteTask, populateForm, removeTask }
 )(TaskCard);
 
 const TaskContainer = styled.div`
