@@ -5,6 +5,7 @@ export const UPDATE_TASK = "UPDATE_TASK"
 export const CANCEL = "CANCEL"
 
 export const addTask = (task) => {
+  console.log(task)
   return {
     type: ADD_TASK,
     payload: task
