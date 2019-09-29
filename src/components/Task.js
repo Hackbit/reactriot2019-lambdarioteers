@@ -30,7 +30,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     >
       <TaskCard>
         <Top>
-          {/* {user.user_type === "Volunteer" && 
+          {user.user_type === "Volunteer" && 
             <AddTaskButton
               onClick={e => {
                 saveTaskCard(e);
@@ -38,7 +38,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
             >
               <i className="fas fa-plus"></i>
             </AddTaskButton>
-          } */}
+          }
           <div className="img-container">
             <img
               src={img ? img : 'https://via.placeholder.com/150'}

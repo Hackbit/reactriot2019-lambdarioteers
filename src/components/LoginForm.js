@@ -38,7 +38,7 @@ const FormikLoginForm = withFormik({
     let user = props.users.filter(user => 
       (user.email === values.email) && (user.password === values.password)
       )[0];
-
+      console.log(user)
       if (user){
       localStorage.setItem('id', user.id);
       props.history.push("/dashboard");
