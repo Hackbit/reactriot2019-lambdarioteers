@@ -14,7 +14,7 @@ const Navigation = ({ users }) => {
 
   return (
     <>
-      <NavigationContainer isOpen={isOpen} onClick={toggleNav}>
+      <NavigationContainer isOpen={isOpen}>
         <HamburgerMenu
           isOpen={isOpen}
           strokeWidth={2}
@@ -24,15 +24,22 @@ const Navigation = ({ users }) => {
           color="black"
           borderRadius={0}
           animationDuration={0.5}
+          menuClicked={toggleNav}
         />
       </NavigationContainer>
 
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-        {user.user_type === 'Volunteer' && (
+        {!user && <NavLink to="/">Home</NavLink>}
+        {!user && <NavLink to="/register">Register</NavLink>}
+        {user && <NavLink to="/dashboard">Dashboard</NavLink>}
+        {user && user.user_type === 'Volunteer' && (
           <NavLink to="/saved-tasks">Saved Tasks</NavLink>
         )}
-        <NavLink to="">Log Out</NavLink>
+        {user && (
+          <NavLink to="/" onClick={() => localStorage.removeItem('id')}>
+            Log Out
+          </NavLink>
+        )}
       </NavLinkContainer>
     </>
   );

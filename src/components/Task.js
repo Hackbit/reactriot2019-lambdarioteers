@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { saveTask } from '../actions/userActions';
-import { isUserWhitespacable } from '@babel/types';
+import { connect } from "react-redux";
+import { saveTask } from "../actions/userActions";
 
 const Task = ({ task, history, tasks, users, saveTask }) => {
   const {
@@ -14,14 +13,13 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     img,
     description
   } = task;
-  const [isVolunteer] = useState(true);
   let taskCard = tasks.filter(task => task.id === id);
-  let user = users.filter(user => user.id === +localStorage.getItem('id'))[0];
+  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
 
-  const saveTaskCard = e => {
+  const saveTaskCard = (e) => {
     e.stopPropagation();
     saveTask(user.id, taskCard);
-  };
+  }
 
   return (
     <TaskContainer
@@ -31,7 +29,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     >
       <TaskCard>
         <Top>
-          {user.user_type === 'Volunteer' && (
+          {user && user.user_type === "Volunteer" && 
             <AddTaskButton
               onClick={e => {
                 saveTaskCard(e);
@@ -39,7 +37,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
             >
               <i className="fas fa-plus"></i>
             </AddTaskButton>
-          )}
+          }
           <div className="img-container">
             <img
               src={img ? img : 'https://via.placeholder.com/150'}
@@ -60,9 +58,9 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
+  console.log(state)
   return { tasks: state.taskReducer.tasks, users: state.userReducer.users };
-};
+}
 
 export default connect(
   mapStateToProps,

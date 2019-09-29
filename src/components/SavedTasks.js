@@ -1,29 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Task from './Task';
+import Task from "./Task";
+
 
 const SavedTasks = ({ users, history }) => {
-  let currentUser = users.filter(
-    user => user.id === +localStorage.getItem('id')
-  )[0];
+    let currentUser = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
 
-  return (
-    <TaskViewContainer>
-      <h1>Saved Tasks</h1>
-      {currentUser.tasks.map(task => (
-        <Task history={history} task={task} />
-      ))}
-    </TaskViewContainer>
-  );
+    return (
+        <TaskViewContainer>
+            {!currentUser.tasks.length ? <h1>No saved tasks</h1> : <h1>Saved Tasks</h1>}
+            {
+                currentUser.tasks && currentUser.tasks.map(task => <Task history={history} task={task} />)
+            }
+        </TaskViewContainer>
+    );
 };
 const mapStateToProps = state => {
-  return { users: state.userReducer.users };
-};
+    return { users: state.userReducer.users}
+}
 export default connect(
-  mapStateToProps,
-  null
+    mapStateToProps, 
+    null
 )(SavedTasks);
 
 const TaskViewContainer = styled.div`

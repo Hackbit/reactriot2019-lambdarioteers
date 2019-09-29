@@ -25,9 +25,15 @@ const Register = ({ errors, touched, isSubmitting }) => {
         <Field name="password" type="password" placeholder="Password" />
         {errors.password && <InputError>{errors.password}</InputError>}
         <Field component="select" name="user_type">
-          <option value="Volunteer">Volunteer</option>
+          <option value="" selected disabled hidden>
+            Select account type
+          </option>
+          <option selected="selected" value="Volunteer">
+            Volunteer
+          </option>
           <option value="Charity">Charity</option>
         </Field>
+        {errors.user_type && <InputError>{errors.user_type}</InputError>}
         <FormButton
           disabled={isSubmitting}
           type="submit"
@@ -58,7 +64,7 @@ const FormikRegisterForm = withFormik({
       email: email || '',
       address: address || '',
       password: password || '',
-      user_type: user_type || 'Volunteer'
+      user_type: user_type || ''
     };
   },
 
@@ -72,7 +78,10 @@ const FormikRegisterForm = withFormik({
     address: Yup.string().required('Please enter an address.'),
     password: Yup.string()
       .min(6, 'Your password must be a minimum of 6 characters.')
-      .required('Please enter a password.')
+      .required('Please enter a password.'),
+    user_type: Yup.string()
+      .oneOf(['Volunteer', 'Charity'])
+      .required('Please select your account type.')
   }),
 
   handleSubmit(values, { props }) {
@@ -81,7 +90,8 @@ const FormikRegisterForm = withFormik({
     props.addUser({
       ...values,
       id: id,
-      tasks: []
+      tasks: [],
+      authorized: true
     });
     localStorage.setItem('id', id);
     props.history.push('/dashboard');
