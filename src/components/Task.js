@@ -18,7 +18,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
 
   const saveTaskCard = e => {
     e.stopPropagation();
-    saveTask(user.id, taskCard[0].id);
+    saveTask(user.id, taskCard);
   };
 
   return (

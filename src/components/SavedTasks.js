@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Task from './Task';
 
-const SavedTasks = ({ users, history }) => {
+const SavedTasks = ({ users, tasks, history }) => {
   let currentUser = users.filter(
     user => user.id === +localStorage.getItem('id')
   )[0];
@@ -16,13 +16,20 @@ const SavedTasks = ({ users, history }) => {
       ) : (
         <h1>Saved Tasks</h1>
       )}
-      {currentUser.tasks &&
-        currentUser.tasks.map(task => <Task history={history} task={task} />)}
+      {
+        console.log(currentUser.tasks)
+      }
+      {
+          console.log(tasks)
+      }
     </TaskViewContainer>
   );
 };
 const mapStateToProps = state => {
-  return { users: state.userReducer.users };
+  return { 
+    tasks: state.taskReducer.tasks,
+    users: state.userReducer.users 
+};
 };
 export default connect(
   mapStateToProps,
