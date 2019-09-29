@@ -46,6 +46,7 @@ const Navigation = ({ users }) => {
 };
 
 const mapPropsToState = state => {
+  console.log(state)
   return { users: state.userReducer.users };
 };
 

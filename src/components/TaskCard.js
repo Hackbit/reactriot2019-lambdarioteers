@@ -9,6 +9,7 @@ const TaskCard = ({
   match,
   history,
   deleteTask,
+  removeTask,
   populateForm,
   users
 }) => {
@@ -35,6 +36,7 @@ const TaskCard = ({
 
   const deleteTaskHandler = () => {
     deleteTask(id);
+    removeTask(user.id, task.id);
     history.push('/task-view');
   };
 
