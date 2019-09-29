@@ -19,9 +19,6 @@ const LandingPage = props => {
           </Button>
         </Top>
         <TaskCarousel />
-        <Bottom>
-          <Button onClick={e => props.history.push('task-view')}>View</Button>
-        </Bottom>
       </ButtonWrapper>
     </LandingWrapper>
   ) : (
@@ -34,6 +31,7 @@ export default withRouter(LandingPage);
 const LandingWrapper = styled.div`
   height: 100vh;
   width: 100vw;
+  background-color: #e4d6a7;
   background-image: url('https://react-riot.s3.us-east-2.amazonaws.com/lady_medium.jpg');
   background-size: cover;
   @media (min-width: 500px) {
@@ -60,15 +58,6 @@ const Top = styled.div`
   align-content: center;
   align-items: center;
   margin: 10px auto;
-  width: 100%;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  align-items: center;
-  margin: 25px auto;
   width: 100%;
 `;
 
