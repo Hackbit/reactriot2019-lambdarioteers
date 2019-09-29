@@ -1,4 +1,4 @@
-import { DELETING_USER, ADDING_USER } from "../actions";
+import { DELETING_USER, ADDING_USER, SAVE_TASK } from "../actions";
 
 const initial_state = {
   users: [],
@@ -18,6 +18,11 @@ const userReducer = (state = initial_state, action) => {
     case DELETING_USER:
       newUsers = state.users.filter(user => user.id !== action.payload);
       return { ...state, users: [...newUsers] };
+    case SAVE_TASK:
+        let user = state.users.filter(user => user.id === action.payload.user);
+        user[0].tasks.push(action.payload.task[0])
+        console.log(user[0])
+        // return { ...state, users: [...state.users, user]};
     default:
       return state;
   }

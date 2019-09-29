@@ -13,8 +13,8 @@ const LoginForm = ({ setLoggingIn, errors }) => {
         <Field name="password" type="password" placeholder="Password" />
         {errors.password && <InputError>{errors.password}</InputError>}
         <Field component="select" name="user_type">
-          <option value="Charity">Charity</option>
           <option value="Volunteer">Volunteer</option>
+          <option value="Charity">Charity</option>
         </Field>
         <Bottom>
           <Button type="submit">Log In</Button>
@@ -25,10 +25,11 @@ const LoginForm = ({ setLoggingIn, errors }) => {
 };
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ email, password, user_type }) {
     return {
       email: email || '',
-      password: password || ''
+      password: password || '',
+      user_type: user_type || 'Volunteer'
     };
   },
 
@@ -38,7 +39,7 @@ const FormikLoginForm = withFormik({
   }),
 
   handleSubmit(values, { resetForm }) {
-    console.log(values);
+    localStorage.setItem('id', Date.now());
     resetForm();
   }
 })(LoginForm);

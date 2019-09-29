@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import HamburgerMenu from 'react-hamburger-menu';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
-const Navigation = () => {
+const Navigation = ({ users }) => {
   const [isOpen, setIsOpen] = useState(false);
+  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -28,13 +30,21 @@ const Navigation = () => {
 
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
         <NavLink to="/dashboard">Dashboard</NavLink>
-        <NavLink to="">Example</NavLink>
+        {user.user_type === "Volunteer" && <NavLink to="/saved-tasks">Saved Tasks</NavLink>}
         <NavLink to="">Log Out</NavLink>
       </NavLinkContainer>
     </>
   );
 };
-export default Navigation;
+
+const mapPropsToState = state => {
+    return { users: state.userReducer.users }
+};
+
+export default connect(
+    mapPropsToState,
+    null
+)(Navigation);
 
 const NavigationContainer = styled.div`
   cursor: pointer;
