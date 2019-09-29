@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { addTask, updateTask, cancel } from '../actions/taskActions';
-import { FormContainer, FormButton, CancelButton } from './FormStyles';
+import {
+  FormContainer,
+  FormButton,
+  CancelButton,
+  ImagePreview
+} from './FormStyles';
 
 const TaskForm = ({
   status,
@@ -16,31 +22,52 @@ const TaskForm = ({
   updateTask,
   isUpdating,
   cancel,
-  id
+  id,
+  img
 }) => {
+  const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState(img);
   useEffect(() => {
     if (status) {
       if (isUpdating) {
         updateTask({
           id,
+          img: image,
           ...status
         });
       } else {
-        const newTask = {
+        addTask({
           id: Date.now(),
+          img: image,
           ...status
-        };
-        addTask(newTask);
+        });
       }
+
       history.push('/task-view');
     }
   }, [status, addTask, history, id, isUpdating, isSubmitting, updateTask]);
-
+  const uploadImage = async e => {
+    const img = e.target.files;
+    const data = new FormData();
+    data.append('file', img[0]);
+    data.append('upload_preset', 'zaqsyfht');
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        'https://api.cloudinary.com/v1_1/dycgfls0e/image/upload',
+        data
+      );
+      console.log(res);
+      setImage(res.data.secure_url);
+      setLoading(false);
+    } catch ({ message }) {
+      console.error(message);
+    }
+  };
   const cancelBtn = () => {
     cancel();
     history.goBack();
   };
-  console.log(isUpdating);
   return (
     <FormContainer bgColor="#e9b44c">
       <h1>Create a new task</h1>
@@ -64,7 +91,18 @@ const TaskForm = ({
           type="number"
           placeholder="Points to earn"
         />
-        <Field component="input" name="img" type="text" placeholder="Image" />
+        <input
+          component="input"
+          name="img"
+          type="file"
+          placeholder="Image"
+          onChange={uploadImage}
+        />
+        {loading ? (
+          <h3>Loading...</h3>
+        ) : (
+          image.length > 0 && <ImagePreview src={image} alt="Task image" />
+        )}
         <Field
           component="textarea"
           name="description"
@@ -102,7 +140,6 @@ const TaskFormWithFormik = withFormik({
       locationInput: locationInput || '',
       time: time || '',
       pointsToEarn: pointsToEarn || '',
-      img: img || '',
       description: description || ''
     };
   },
@@ -112,7 +149,6 @@ const TaskFormWithFormik = withFormik({
     time: Yup.string(),
     locationInput: Yup.string(),
     pointsToEarn: Yup.number(),
-    img: Yup.string(),
     description: Yup.string()
   }),
 

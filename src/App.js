@@ -20,6 +20,7 @@ function App() {
       <Route path="/task-form" component={TaskForm} />
       <Route path="/task/:id" component={TaskCard} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/saved-tasks" component={SavedTasks} />
     </div>
   );
 }
