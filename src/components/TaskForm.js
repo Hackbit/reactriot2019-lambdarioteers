@@ -3,6 +3,7 @@ import { Form, Field, withFormik } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { addTask, updateTask, cancel } from '../actions/taskActions';
 import {
@@ -29,8 +30,9 @@ const TaskForm = ({
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(img);
   let user = users.filter(user => user.id === +localStorage.getItem('id'))[0];
-  console.log(user.id);
+  
   useEffect(() => {
+    
     if (status) {
       if (isUpdating) {
         updateTask({
@@ -38,12 +40,25 @@ const TaskForm = ({
           img: image,
           ...status
         });
+        toast.success('Update success',  {
+          className: 'status-ok',
+          position: toast.POSITION.BOTTOM_CENTER,
+          hideProgressBar: true,
+          autoClose: 2500
+        });
+        
       } else {
         addTask({
           id: Date.now(),
           img: image,
           user_id: user.id,
           ...status
+        });
+        toast.success('Add success',  {
+          className: 'status-ok',
+          position: toast.POSITION.BOTTOM_CENTER,
+          hideProgressBar: true,
+          autoClose: 2500
         });
       }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toggleTask } from '../actions/userActions';
+import { toast } from 'react-toastify'
 
 const Task = ({ task, history, tasks, users, toggleTask }) => {
   const {
