@@ -27,7 +27,7 @@ const Navigation = ({ users }) => {
           menuClicked={toggleNav}
         />
       </NavigationContainer>
-
+      <div id="hackbit-vote-widget"></div>
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
         {!user && <NavLink to="/">Home</NavLink>}
         {!user && <NavLink to="/register">Register</NavLink>}
