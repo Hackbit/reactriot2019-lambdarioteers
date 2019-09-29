@@ -21,15 +21,13 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
     saveTask(user.id, taskCard[0].id);
   };
 
-  console.log(user.tasks);
-
   return (
     <TaskContainer
       onClick={() => {
         history.push(`/task/${id}`);
       }}
     >
-      <TaskCard saved_task={user.tasks.includes(id)}>
+      <TaskCard saved_task={user && user.tasks.includes(id)}>
         <Top>
           <div className="img-container">
             <img
@@ -50,7 +48,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
           </TextContainer>
           {user && user.user_type === 'Volunteer' && (
             <AddTaskButton
-              saved_task={user.tasks.includes(id)}
+              saved_task={user && user.tasks.includes(id)}
               onClick={e => {
                 saveTaskCard(e);
               }}
