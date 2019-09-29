@@ -38,6 +38,7 @@ const TaskForm = ({
           img: image,
           ...status
         });
+        
       } else {
         addTask({
           id: Date.now(),
