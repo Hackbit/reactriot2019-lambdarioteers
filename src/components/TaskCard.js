@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { deleteTask, populateForm } from "../actions/taskActions";
+import { saveTask } from "../actions/userActions";
 
 const TaskCard = ({ tasks, match, history, deleteTask, populateForm, users }) => {
   const task = tasks.find(item => `${item.id}` === match.params.id);
@@ -27,7 +28,8 @@ const TaskCard = ({ tasks, match, history, deleteTask, populateForm, users }) =>
   } = task;
 
   const deleteTaskHandler = () => {
-    deleteTask(id);
+    saveTask(user.id, task)
+    // deleteTask(id);
     history.push("/task-view");
   };
 
@@ -67,7 +69,7 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { deleteTask, populateForm }
+  { deleteTask, populateForm, saveTask }
 )(TaskCard);
 
 const TaskContainer = styled.div`
