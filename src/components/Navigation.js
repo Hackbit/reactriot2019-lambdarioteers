@@ -61,7 +61,7 @@ const NavigationContainer = styled.div`
   cursor: pointer;
   position: absolute;
   top: 0px;
-  left: 20px;
+  left: 5px;
   z-index: 2;
   height: 22px;
   background: ${props => (props.isOpen ? 'none' : 'rgba(228, 214, 167, .8)')};
@@ -86,7 +86,7 @@ const NavLinkContainer = styled.div`
   a {
     text-decoration: none;
     color: black;
-    padding: 20px 0;
+    padding: 5px 0;
     // background: #e4d6a7;
     transition: all 0.3s;
 
@@ -102,4 +102,6 @@ const WidgetWrapper = styled.div`
   width: 100%;
   top: 0;
   left: 0;
+  //padding-left: 50px;
+  background-color: #443737;
 `;

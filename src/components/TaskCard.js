@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { deleteTask, populateForm } from '../actions/taskActions';
+import { deleteTask, populateForm, removeTask } from '../actions/taskActions';
 
 const TaskCard = ({
   tasks,
@@ -51,13 +51,33 @@ const TaskCard = ({
           <img
             src={img ? img : 'https://via.placeholder.com/150'}
             alt="img url"
-            />
+          />
         </ImageContainer>
         <h1>{name}</h1>
-        <p><em><u>Location:</u></em> {locationInput}</p>
-        <p><em><u>Time:</u></em> {time}</p>
-        <p><em><u>Description:</u></em> {description}</p>
-        <p><em><u>Points:</u></em> {pointsToEarn}</p>
+        <p>
+          <em>
+            <u>Location:</u>
+          </em>{' '}
+          {locationInput}
+        </p>
+        <p>
+          <em>
+            <u>Time:</u>
+          </em>{' '}
+          {time}
+        </p>
+        <p>
+          <em>
+            <u>Description:</u>
+          </em>{' '}
+          {description}
+        </p>
+        <p>
+          <em>
+            <u>Points:</u>
+          </em>{' '}
+          {pointsToEarn}
+        </p>
       </TaskDiv>
       {user && user_id === user.id && (
         <ButtonContainer>
@@ -77,7 +97,7 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { deleteTask, populateForm }
+  { deleteTask, populateForm, removeTask }
 )(TaskCard);
 
 const TaskContainer = styled.div`

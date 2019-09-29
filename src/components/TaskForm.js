@@ -57,7 +57,8 @@ const TaskForm = ({
     isUpdating,
     isSubmitting,
     updateTask,
-    image
+    image,
+    user.id
   ]);
   const uploadImage = async e => {
     const img = e.target.files;
@@ -127,7 +128,7 @@ const TaskForm = ({
         <Field
           component="textarea"
           name="description"
-          type="text"
+          type="textarea"
           placeholder="Description"
         />
         <FormButton
@@ -137,7 +138,7 @@ const TaskForm = ({
           hoverColor="#1c110a"
         >
           {' '}
-          {isUpdating ? 'Updating' : 'Add new task'}
+          {isUpdating ? 'Update task' : 'Add new task'}
         </FormButton>
       </Form>
       <CancelButton onClick={cancelBtn} bgColor="#9b2915" hoverColor="#1c110a">
@@ -161,7 +162,8 @@ const TaskFormWithFormik = withFormik({
       locationInput: locationInput || '',
       time: time || '',
       pointsToEarn: pointsToEarn || '',
-      description: description || ''
+      description: description || '',
+      img: img || ''
     };
   },
 
@@ -185,7 +187,7 @@ const mapStateToProps = state => {
     name: state.taskReducer.name,
     locationInput: state.taskReducer.locationInput,
     time: state.taskReducer.time,
-    points: state.taskReducer.pointsToEarn,
+    pointsToEarn: state.taskReducer.pointsToEarn,
     img: state.taskReducer.img,
     description: state.taskReducer.description,
     users: state.userReducer.users
