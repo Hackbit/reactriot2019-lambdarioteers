@@ -15,7 +15,10 @@ const Dashboard = ({ history, users }) => {
         </AddTaskButton>
       )}
       <hr />
-      <TaskView history={history} />
+      <TaskView
+        this_user={user.user_type == 'Charity' ? user.id : false}
+        history={history}
+      />
     </DashboardWrapper>
   );
 };
@@ -31,8 +34,7 @@ export default connect(
 
 const DashboardWrapper = styled.div`
     background: #50a2a7;
-    margin-top: -22px;
-    padding-top: 24px;
+    padding-top: 45px;
 
     hr {
         background: black;

@@ -23,10 +23,13 @@ const TaskForm = ({
   isUpdating,
   cancel,
   id,
-  img
+  img,
+  users
 }) => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(img);
+  let user = users.filter(user => user.id === +localStorage.getItem('id'))[0];
+  console.log(user.id);
   useEffect(() => {
     if (status) {
       if (isUpdating) {
@@ -39,6 +42,7 @@ const TaskForm = ({
         addTask({
           id: Date.now(),
           img: image,
+          user_id: user.id,
           ...status
         });
       }
@@ -53,7 +57,8 @@ const TaskForm = ({
     isUpdating,
     isSubmitting,
     updateTask,
-    image
+    image,
+    user.id
   ]);
   const uploadImage = async e => {
     const img = e.target.files;
@@ -176,7 +181,8 @@ const mapStateToProps = state => {
     time: state.taskReducer.time,
     pointsToEarn: state.taskReducer.pointsToEarn,
     img: state.taskReducer.img,
-    description: state.taskReducer.description
+    description: state.taskReducer.description,
+    users: state.userReducer.users
   };
 };
 

@@ -27,7 +27,9 @@ const Navigation = ({ users }) => {
           menuClicked={toggleNav}
         />
       </NavigationContainer>
-
+      <WidgetWrapper>
+        <div id="hackbit-vote-widget"></div>
+      </WidgetWrapper>
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
         {!user && <NavLink to="/">Home</NavLink>}
         {!user && <NavLink to="/register">Register</NavLink>}
@@ -46,7 +48,7 @@ const Navigation = ({ users }) => {
 };
 
 const mapPropsToState = state => {
-  console.log(state)
+  console.log(state);
   return { users: state.userReducer.users };
 };
 
@@ -58,7 +60,7 @@ export default connect(
 const NavigationContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 20px;
+  top: 0px;
   left: 20px;
   z-index: 2;
   height: 22px;
@@ -70,27 +72,34 @@ const NavigationContainer = styled.div`
 `;
 
 const NavLinkContainer = styled.div`
-    display: flex
-    flex-direction: column;
-    width: 100%;
-    background: #e4d6a7;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    transform: translateY(${props => (props.isOpen ? '0' : '-200')}px);
-    transition: all .4s;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #e4d6a7;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transform: translateY(${props => (props.isOpen ? '0' : '-200')}px);
+  transition: all 0.4s;
 
-    a {
-        text-decoration: none;
-        color: black;
-        padding: 10px 0;
-        // background: #e4d6a7;
-        transition: all .3s;
+  a {
+    text-decoration: none;
+    color: black;
+    padding: 20px 0;
+    // background: #e4d6a7;
+    transition: all 0.3s;
 
-        &:hover {
-            background: #9b2915;
-            color: white;
-        }
+    &:hover {
+      background: #9b2915;
+      color: white;
     }
+  }
+`;
+
+const WidgetWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 `;

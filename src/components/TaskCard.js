@@ -9,7 +9,6 @@ const TaskCard = ({
   match,
   history,
   deleteTask,
-  removeTask,
   populateForm,
   users
 }) => {
@@ -31,12 +30,12 @@ const TaskCard = ({
     time,
     pointsToEarn,
     img,
-    description
+    description,
+    user_id
   } = task;
 
   const deleteTaskHandler = () => {
     deleteTask(id);
-    removeTask(user.id, task.id);
     history.push('/task-view');
   };
 
@@ -48,19 +47,19 @@ const TaskCard = ({
   return (
     <TaskContainer>
       <TaskDiv>
-        <h1>{name}</h1>
         <ImageContainer>
           <img
             src={img ? img : 'https://via.placeholder.com/150'}
             alt="img url"
-          />
+            />
         </ImageContainer>
-        <p>Location: {locationInput}</p>
-        <p>Time: {time}</p>
-        <p>Description: {description}</p>
-        <p>Points: {pointsToEarn}</p>
+        <h1>{name}</h1>
+        <p><em><u>Location:</u></em> {locationInput}</p>
+        <p><em><u>Time:</u></em> {time}</p>
+        <p><em><u>Description:</u></em> {description}</p>
+        <p><em><u>Points:</u></em> {pointsToEarn}</p>
       </TaskDiv>
-      {user && (
+      {user && user_id === user.id && (
         <ButtonContainer>
           <TaskButton onClick={deleteTaskHandler}>Delete</TaskButton>
           <TaskButton onClick={populateFormHandler}>Update</TaskButton>
