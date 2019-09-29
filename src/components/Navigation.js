@@ -27,7 +27,9 @@ const Navigation = ({ users }) => {
           menuClicked={toggleNav}
         />
       </NavigationContainer>
-      <div id="hackbit-vote-widget"></div>
+      <WidgetWrapper>
+        <div id="hackbit-vote-widget"></div>
+      </WidgetWrapper>
       <NavLinkContainer isOpen={isOpen} onClick={toggleNav}>
         {!user && <NavLink to="/">Home</NavLink>}
         {!user && <NavLink to="/register">Register</NavLink>}
@@ -58,7 +60,7 @@ export default connect(
 const NavigationContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 60px;
+  top: 0px;
   left: 20px;
   z-index: 2;
   height: 22px;
@@ -93,4 +95,11 @@ const NavLinkContainer = styled.div`
       color: white;
     }
   }
+`;
+
+const WidgetWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
 `;

@@ -82,7 +82,7 @@ const ButtonWrapper = styled.div`
 
 const Header = styled.h1`
   @import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
-  margin-top: 20px;
+  margin-top: 60px;
   font-size: 3rem;
   color: #1c110a;
   font-weight: bold;
