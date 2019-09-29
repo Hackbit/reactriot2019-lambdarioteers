@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -20,10 +20,10 @@ export const FormContainer = styled.div`
     justify-content: space-evenly;
     align-items: center;
     width: 80%;
+    max-width: 700px;
 
     input,
-    textarea,
-    select {
+    textarea {
       width: 70%;
       min-width: 70%;
       min-height: 35px;
@@ -35,6 +35,24 @@ export const FormContainer = styled.div`
       background: #e4d6a7;
       font-family: 'Arial', sans-serif;
       color: black;
+    }
+
+    select {
+      width: 76%;
+      min-width: 70%;
+      min-height: 35px;
+      padding: 8px;
+      margin: 12px 0;
+      border: 2px solid transparent;
+      border-radius: 3px;
+      font-size: 1rem;
+      background: #e4d6a7;
+      font-family: 'Arial', sans-serif;
+      color: black;
+
+      @media (min-width: 600px){
+        width: 72%;
+      }
     }
 
     .img-submission {
@@ -79,6 +97,10 @@ export const FormButton = styled.button`
     background: ${props => props.hoverColor};
     color: white;
   }
+
+  @media (min-width: 700px){
+    width: 72%;
+  }
 `;
 
 export const ImagePreview = styled.img`
@@ -88,6 +110,9 @@ export const ImagePreview = styled.img`
 
 export const CancelButton = styled(FormButton)`
   width: 61%;
+  @media (min-width: 600px){
+    max-width: 505px;
+  }
 `;
 
 export const InputError = styled.p`
