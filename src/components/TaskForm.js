@@ -23,7 +23,9 @@ const TaskForm = ({
   isUpdating,
   cancel,
   id,
-  img
+  img,
+  description,
+  pointsToEarn
 }) => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(img);
@@ -32,6 +34,8 @@ const TaskForm = ({
       if (isUpdating) {
         updateTask({
           id,
+          description,
+          pointsToEarn,
           img: image,
           ...status
         });
@@ -45,7 +49,18 @@ const TaskForm = ({
 
       history.push('/task-view');
     }
-  }, [status, addTask, history, id, isUpdating, isSubmitting, updateTask, image]);
+  }, [
+    status,
+    addTask,
+    history,
+    id,
+    isUpdating,
+    isSubmitting,
+    updateTask,
+    image,
+    pointsToEarn,
+    description
+  ]);
   const uploadImage = async e => {
     const img = e.target.files;
     const data = new FormData();
@@ -116,7 +131,7 @@ const TaskForm = ({
           hoverColor="#1c110a"
         >
           {' '}
-          {isUpdating ? 'Updating' : 'Add new task'}
+          {isUpdating ? 'Update task' : 'Add new task'}
         </FormButton>
       </Form>
       <CancelButton onClick={cancelBtn} bgColor="#9b2915" hoverColor="#1c110a">
@@ -140,7 +155,8 @@ const TaskFormWithFormik = withFormik({
       locationInput: locationInput || '',
       time: time || '',
       pointsToEarn: pointsToEarn || '',
-      description: description || ''
+      description: description || '',
+      img: img || ''
     };
   },
 
