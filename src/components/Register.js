@@ -78,7 +78,8 @@ const FormikRegisterForm = withFormik({
     props.addUser({
         ...values, 
         id: id,
-        tasks: []
+        tasks: [],
+        authorized: true
     });
     localStorage.setItem('id', id);
     props.history.push("/dashboard")

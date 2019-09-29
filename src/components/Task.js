@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { saveTask } from "../actions/userActions";
-import { isUserWhitespacable } from '@babel/types';
 
 const Task = ({ task, history, tasks, users, saveTask }) => {
   const {
