@@ -72,7 +72,8 @@ const TaskForm = ({
     isUpdating,
     isSubmitting,
     updateTask,
-    image
+    image,
+    user.id
   ]);
   const uploadImage = async e => {
     const img = e.target.files;
@@ -119,22 +120,30 @@ const TaskForm = ({
           type="number"
           placeholder="Points to earn"
         />
-        <input
-          component="input"
-          name="img"
-          type="file"
-          placeholder="Image"
-          onChange={uploadImage}
-        />
-        {loading ? (
-          <h3>Loading...</h3>
-        ) : (
-          image.length > 0 && <ImagePreview src={image} alt="Task image" />
-        )}
+        <div className="img-submission">
+          <button>Upload Image</button>
+          <Field
+            component="input"
+            name="img"
+            type="file"
+            placeholder="Image"
+            onChange={uploadImage}
+            style={{
+              opacity: '0',
+              zIndex: '2',
+              width: '100%'
+            }}
+          />
+          {loading ? (
+            <h3>Loading...</h3>
+          ) : (
+            image.length > 0 && <ImagePreview src={image} alt="Task image" />
+          )}
+        </div>
         <Field
           component="textarea"
           name="description"
-          type="text"
+          type="textarea"
           placeholder="Description"
         />
         <FormButton
@@ -144,7 +153,7 @@ const TaskForm = ({
           hoverColor="#1c110a"
         >
           {' '}
-          {isUpdating ? 'Updating' : 'Add new task'}
+          {isUpdating ? 'Update task' : 'Add new task'}
         </FormButton>
       </Form>
       <CancelButton onClick={cancelBtn} bgColor="#9b2915" hoverColor="#1c110a">
@@ -168,7 +177,8 @@ const TaskFormWithFormik = withFormik({
       locationInput: locationInput || '',
       time: time || '',
       pointsToEarn: pointsToEarn || '',
-      description: description || ''
+      description: description || '',
+      img: img || ''
     };
   },
 
@@ -192,7 +202,7 @@ const mapStateToProps = state => {
     name: state.taskReducer.name,
     locationInput: state.taskReducer.locationInput,
     time: state.taskReducer.time,
-    points: state.taskReducer.pointsToEarn,
+    pointsToEarn: state.taskReducer.pointsToEarn,
     img: state.taskReducer.img,
     description: state.taskReducer.description,
     users: state.userReducer.users

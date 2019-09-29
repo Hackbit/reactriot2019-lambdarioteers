@@ -23,7 +23,7 @@ const userReducer = (state = initial_state, action) => {
       let tUser;
       let users = state.users.filter(user => {
         if (user.id === action.payload.user) tUser = user;
-        else return user;
+        return user.id !== action.payload.user;
       });
       if (!tUser.tasks) tUser.tasks = [];
 
