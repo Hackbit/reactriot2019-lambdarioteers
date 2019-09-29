@@ -24,6 +24,10 @@ const Register = ({ errors, touched, isSubmitting }) => {
         {errors.address && <InputError>{errors.address}</InputError>}
         <Field name="password" type="password" placeholder="Password" />
         {errors.password && <InputError>{errors.password}</InputError>}
+        <Field component="select" name="user_type">
+          <option value="Volunteer">Volunteer</option>
+          <option value="Charity">Charity</option>
+        </Field>
         <FormButton
           disabled={isSubmitting}
           type="submit"
@@ -38,14 +42,15 @@ const Register = ({ errors, touched, isSubmitting }) => {
 };
 
 const FormikRegisterForm = withFormik({
-  mapPropsToValues({ organization, name, phone, email, address, password }) {
+  mapPropsToValues({ organization, name, phone, email, address, password, user_type }) {
     return {
       organization: organization || "",
       name: name || "",
       phone: phone || "",
       email: email || "",
       address: address || "",
-      password: password || ""
+      password: password || "",
+      user_type: user_type || "Volunteer"
     };
   },
 
@@ -59,16 +64,20 @@ const FormikRegisterForm = withFormik({
     address: Yup.string().required("Please enter an address."),
     password: Yup.string()
       .min(6, "Your password must be a minimum of 6 characters.")
-      .required("Please enter a password.")
+      .required("Please enter a password."),
   }),
 
-  handleSubmit(values, { props, resetForm }) {
+  handleSubmit(values, { props }) {
     console.log(values);
-    values.name = "";
-    values.phone = "";
-    props.addUser(values);
-    resetForm();
-  }
+    const id = Date.now();
+    props.addUser({
+        ...values, 
+        id: id,
+        tasks: []
+    });
+    localStorage.setItem('id', id);
+    props.history.push("/dashboard")
+}
 })(Register);
 
 const mapStateToProps = state => {

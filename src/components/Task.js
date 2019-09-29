@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from "react-redux";
+import { saveTask } from "../actions/userActions";
+import { isUserWhitespacable } from '@babel/types';
 
-const Task = ({ task, history }) => {
+const Task = ({ task, history, tasks, users, saveTask }) => {
   const {
     id,
     name,
@@ -12,6 +15,14 @@ const Task = ({ task, history }) => {
     description
   } = task;
   const [isVolunteer] = useState(true);
+  let taskCard = tasks.filter(task => task.id === id);
+  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
+
+  const saveTaskCard = (e) => {
+    e.stopPropagation();
+    saveTask(user.id, taskCard);
+  }
+
   return (
     <TaskContainer
       onClick={() => {
@@ -20,15 +31,15 @@ const Task = ({ task, history }) => {
     >
       <TaskCard>
         <Top>
-          {isVolunteer && (
+          {user.user_type === "Volunteer" && 
             <AddTaskButton
               onClick={e => {
-                e.stopPropagation();
+                saveTaskCard(e);
               }}
             >
               <i className="fas fa-plus"></i>
             </AddTaskButton>
-          )}
+          }
           <div className="img-container">
             <img
               src={img ? img : 'https://via.placeholder.com/150'}
@@ -48,7 +59,15 @@ const Task = ({ task, history }) => {
   );
 };
 
-export default Task;
+const mapStateToProps = state => {
+  console.log(state)
+  return { tasks: state.taskReducer.tasks, users: state.userReducer.users };
+}
+
+export default connect(
+  mapStateToProps,
+  { saveTask }
+)(Task);
 
 const TaskContainer = styled.div`
   width: 100%;

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from "react-redux";
 
 import TaskView from './TaskView';
 
-const Dashboard = ({ history }) => {
-  const [isCharity] = useState(true);
+const Dashboard = ({ history, users }) => {
+  let user = users.filter(user => user.id === (+localStorage.getItem('id')))[0];
+    console.log(user)
   return (
     <DashboardWrapper>
       <h1>Dashboard</h1>
-      {isCharity && (
+      {user.user_type === "Charity" && (
         <AddTaskButton onClick={() => history.push('/task-form')}>
           + New Task
         </AddTaskButton>
@@ -19,7 +21,14 @@ const Dashboard = ({ history }) => {
   );
 };
 
-export default Dashboard;
+const mapPropsToProps = state => {
+    return { users: state.userReducer.users };
+};
+
+export default connect(
+    mapPropsToProps,
+    null
+)(Dashboard);
 
 const DashboardWrapper = styled.div`
     background: #50a2a7;

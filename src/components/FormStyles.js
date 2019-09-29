@@ -21,7 +21,8 @@ export const FormContainer = styled.div`
     width: 80%;
 
     input,
-    textarea {
+    textarea, 
+    select {
       width: 70%;
       min-width: 70%;
       min-height: 35px;
