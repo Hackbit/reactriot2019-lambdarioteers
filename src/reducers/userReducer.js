@@ -33,7 +33,7 @@ const userReducer = (state = initial_state, action) => {
 
       users = [...users, tUser];
       return { ...state, users };
-      default:
+    default:
       return state;
   }
 };
