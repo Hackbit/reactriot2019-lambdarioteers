@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import Task from "./Task";
+import Task from './Task';
 
 const TaskCarousel = props => {
   let [curTask, setCurTask] = useState(0);
-  let [tasks, setTasks] = useState(props.tasks);
+  let [tasks] = useState(props.tasks);
 
   useEffect(() => {
     setTimeout(() => setCurTask((curTask + 1) % tasks.length), 6000);
-  }, [curTask]);
+  }, [curTask, tasks.length]);
 
   return (
     <div>{tasks && <Task history={props.history} task={tasks[curTask]} />}</div>

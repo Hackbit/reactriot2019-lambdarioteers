@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import TaskView from "./TaskView";
+import TaskView from './TaskView';
 
 const Dashboard = ({ history }) => {
-  const [isCharity, setIsCharity] = useState(true);
+  const [isCharity] = useState(true);
   return (
     <DashboardWrapper>
       <h1>Dashboard</h1>
       {isCharity && (
-        <AddTaskButton onClick={() => history.push("/task-form")}>
+        <AddTaskButton onClick={() => history.push('/task-form')}>
           + New Task
         </AddTaskButton>
       )}
