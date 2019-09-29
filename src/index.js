@@ -7,8 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-
 import rootReducer from './reducers';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const persistedState = localStorage.getItem('reduxState')
   ? JSON.parse(localStorage.getItem('reduxState'))
@@ -23,6 +25,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <App />
+      <ToastContainer />
     </Router>
   </Provider>,
   document.getElementById('root')

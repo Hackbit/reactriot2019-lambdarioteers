@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify'
 
 import { deleteTask, populateForm, removeTask } from '../actions/taskActions';
 
@@ -36,6 +37,12 @@ const TaskCard = ({
 
   const deleteTaskHandler = () => {
     deleteTask(id);
+    toast.success('Delete success',  {
+      className: 'status-ok',
+      position: toast.POSITION.BOTTOM_CENTER,
+      hideProgressBar: true,
+      autoClose: 2500
+    });
     history.push('/task-view');
   };
 

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify'
 import { DELETING_USER, ADDING_USER, TOGGLE_TASK } from '../actions';
 
 const initial_state = {
@@ -26,9 +27,24 @@ const userReducer = (state = initial_state, action) => {
       });
       if (!tUser.tasks) tUser.tasks = [];
 
-      if (tUser.tasks.includes(action.payload.task))
-        tUser.tasks = tUser.tasks.filter(task => task !== action.payload.task);
-      else tUser.tasks.push(action.payload.task);
+      if (tUser.tasks.includes(action.payload.task)) {
+        tUser.tasks = tUser.tasks.filter(task => task != action.payload.task);
+        toast.success('Task removed', {
+          className: 'status-ok',
+          position: toast.POSITION.BOTTOM_CENTER,
+          hideProgressBar: true,
+          autoClose: 2500
+        });
+      }
+      else {
+        tUser.tasks.push(action.payload.task);
+        toast.success('Task saved', {
+          className: 'status-ok',
+          position: toast.POSITION.BOTTOM_CENTER,
+          hideProgressBar: true,
+          autoClose: 2500
+        });
+      }
 
       users = [...users, tUser];
       return { ...state, users };
