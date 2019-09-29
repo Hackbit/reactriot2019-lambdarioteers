@@ -24,7 +24,6 @@ const userReducer = (state = initial_state, action) => {
         if (user.id === action.payload.user) tUser = user;
         else return user;
       });
-
       if (!tUser.tasks) tUser.tasks = [];
 
       if (tUser.tasks.includes(action.payload.task))

@@ -37,14 +37,14 @@ const Task = ({ task, history, tasks, users, toggleTask }) => {
           </div>
           <div className="text-container">
             <h1>{name}</h1>
-            <p>Location: {locationInput}</p>
-            <p>Time: {time}</p>
+            <p><em><u>Location:</u></em> {locationInput}</p>
+            <p><em><u>Date:</u></em> {time}</p>
           </div>
         </Top>
         <Bottom>
           <TextContainer>
-            <p>Description: {description}</p>
-            <p>Points: {pointsToEarn}</p>
+            <p><em><u>Description:</u></em> {description}</p>
+            <p><em><u>Points:</u></em> {pointsToEarn}</p>
           </TextContainer>
           {user && user.user_type === 'Volunteer' && (
             <AddTaskButton
@@ -96,7 +96,7 @@ const Top = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 1.2rem;
-
+  line-height: 1.4;
   *,
   *::before,
   *::after {
@@ -105,11 +105,20 @@ const Top = styled.div`
     box-sizing: border-box;
   }
 
+  img {
+    width: 125px;
+    height: 125px;
+  }
+
   .text-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
+
+    h1 {
+      font-size: 1.4rem;
+    }
   }
 
   .img-container {
@@ -124,6 +133,7 @@ const Top = styled.div`
 const Bottom = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const TextContainer = styled.div`
