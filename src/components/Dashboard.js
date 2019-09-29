@@ -31,7 +31,6 @@ export default connect(
 
 const DashboardWrapper = styled.div`
     background: #50a2a7;
-    margin-top: -22px;
     padding-top: 24px;
 
     hr {

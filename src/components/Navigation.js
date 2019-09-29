@@ -58,7 +58,7 @@ export default connect(
 const NavigationContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 20px;
+  top: 60px;
   left: 20px;
   z-index: 2;
   height: 22px;
@@ -84,7 +84,7 @@ const NavLinkContainer = styled.div`
     a {
         text-decoration: none;
         color: black;
-        padding: 10px 0;
+        padding: 20px 0;
         // background: #e4d6a7;
         transition: all .3s;
 
