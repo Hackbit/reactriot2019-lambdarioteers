@@ -8,6 +8,7 @@ import TaskView from './components/TaskView';
 import TaskForm from './components/TaskForm';
 import TaskCard from './components/TaskCard';
 import Dashboard from './components/Dashboard';
+import SavedTasks from './components/SavedTasks';
 
 function App() {
   return (
