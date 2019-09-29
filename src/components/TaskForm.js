@@ -23,13 +23,13 @@ const TaskForm = ({
   isUpdating,
   cancel,
   id,
-  img, 
+  img,
   users
 }) => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(img);
   let user = users.filter(user => user.id === +localStorage.getItem('id'))[0];
-  console.log(user.id)
+  console.log(user.id);
   useEffect(() => {
     if (status) {
       if (isUpdating) {
@@ -38,7 +38,6 @@ const TaskForm = ({
           img: image,
           ...status
         });
-        
       } else {
         addTask({
           id: Date.now(),
