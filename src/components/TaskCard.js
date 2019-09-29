@@ -111,7 +111,7 @@ const TaskContainer = styled.div`
   min-height: 100vh;
   width: 100%;
   background: #e9b44c;
-  padding-top: 70px;
+  padding: 70px 0 50px;
 
   button {
     cursor: pointer;
@@ -119,7 +119,8 @@ const TaskContainer = styled.div`
 `;
 
 const TaskDiv = styled.div`
-  width: 80%;
+  width: 60%;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   background: #50a2a7;
