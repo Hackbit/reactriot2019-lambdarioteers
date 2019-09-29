@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { saveTask } from '../actions/userActions';
+import { toggleTask } from '../actions/userActions';
 
-const Task = ({ task, history, tasks, users, saveTask }) => {
+const Task = ({ task, history, tasks, users, toggleTask }) => {
   const {
     id,
     name,
@@ -18,7 +18,7 @@ const Task = ({ task, history, tasks, users, saveTask }) => {
 
   const saveTaskCard = e => {
     e.stopPropagation();
-    saveTask(user.id, taskCard[0].id);
+    toggleTask(user.id, taskCard[0].id);
   };
 
   return (
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { saveTask }
+  { toggleTask }
 )(Task);
 
 const TaskContainer = styled.div`

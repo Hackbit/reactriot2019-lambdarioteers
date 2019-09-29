@@ -1,4 +1,4 @@
-import { DELETING_USER, ADDING_USER, SAVE_TASK } from '../actions';
+import { DELETING_USER, ADDING_USER, TOGGLE_TASK } from '../actions';
 
 const initial_state = {
   users: [],
@@ -18,16 +18,19 @@ const userReducer = (state = initial_state, action) => {
     case DELETING_USER:
       newUsers = state.users.filter(user => user.id !== action.payload);
       return { ...state, users: [...newUsers] };
-    case SAVE_TASK:
+    case TOGGLE_TASK:
       let tUser;
       let users = state.users.filter(user => {
         if (user.id === action.payload.user) tUser = user;
         else return user;
       });
+
       if (!tUser.tasks) tUser.tasks = [];
 
-      if (!tUser.tasks.includes(action.payload.task))
-        tUser.tasks.push(action.payload.task);
+      if (tUser.tasks.includes(action.payload.task))
+        tUser.tasks = tUser.tasks.filter(task => task != action.payload.task);
+      else tUser.tasks.push(action.payload.task);
+
       users = [...users, tUser];
 
       return { ...state, users };
