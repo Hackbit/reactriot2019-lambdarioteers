@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { css } from "glamor";
 
 import { addTask, updateTask, cancel } from '../actions/taskActions';
 import {
@@ -55,7 +56,9 @@ const TaskForm = ({
           ...status
         });
         toast.success('Add success',  {
-          className: 'status-ok',
+          className: css({
+            backgroundColor: '#50a2a7 !important' 
+          }),
           position: toast.POSITION.BOTTOM_CENTER,
           hideProgressBar: true,
           autoClose: 2500

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify'
+import { css } from "glamor";
 
 import { deleteTask, populateForm, removeTask } from '../actions/taskActions';
 
@@ -38,7 +39,9 @@ const TaskCard = ({
   const deleteTaskHandler = () => {
     deleteTask(id);
     toast.success('Delete success',  {
-      className: 'status-ok',
+      className: css({
+        backgroundColor: '#9b2915 !important' 
+      }),
       position: toast.POSITION.BOTTOM_CENTER,
       hideProgressBar: true,
       autoClose: 2500

@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify'
 import { DELETING_USER, ADDING_USER, TOGGLE_TASK } from '../actions';
+import { css } from 'glamor';
 
 const initial_state = {
   users: [],
@@ -30,7 +31,9 @@ const userReducer = (state = initial_state, action) => {
       if (tUser.tasks.includes(action.payload.task)) {
         tUser.tasks = tUser.tasks.filter(task => task != action.payload.task);
         toast.success('Task removed', {
-          className: 'status-ok',
+          className: css({
+            backgroundColor: '#9b2915 !important' 
+          }),
           position: toast.POSITION.BOTTOM_CENTER,
           hideProgressBar: true,
           autoClose: 2500
@@ -39,7 +42,9 @@ const userReducer = (state = initial_state, action) => {
       else {
         tUser.tasks.push(action.payload.task);
         toast.success('Task saved', {
-          className: 'status-ok',
+          className: css({
+            backgroundColor: '#50a2a7 !important' 
+          }),
           position: toast.POSITION.BOTTOM_CENTER,
           hideProgressBar: true,
           autoClose: 2500

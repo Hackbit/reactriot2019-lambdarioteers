@@ -128,7 +128,7 @@ const Top = styled.div`
 
   img {
     width: 125px;
-    height: 125px;
+    height: 100px;
   }
 
   .text-container {
