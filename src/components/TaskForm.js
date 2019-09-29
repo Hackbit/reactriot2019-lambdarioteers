@@ -23,9 +23,7 @@ const TaskForm = ({
   isUpdating,
   cancel,
   id,
-  img,
-  description,
-  pointsToEarn
+  img
 }) => {
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(img);
@@ -34,8 +32,6 @@ const TaskForm = ({
       if (isUpdating) {
         updateTask({
           id,
-          description,
-          pointsToEarn,
           img: image,
           ...status
         });
@@ -57,9 +53,7 @@ const TaskForm = ({
     isUpdating,
     isSubmitting,
     updateTask,
-    image,
-    pointsToEarn,
-    description
+    image
   ]);
   const uploadImage = async e => {
     const img = e.target.files;
@@ -121,7 +115,7 @@ const TaskForm = ({
         <Field
           component="textarea"
           name="description"
-          type="text"
+          type="textarea"
           placeholder="Description"
         />
         <FormButton
@@ -180,7 +174,7 @@ const mapStateToProps = state => {
     name: state.taskReducer.name,
     locationInput: state.taskReducer.locationInput,
     time: state.taskReducer.time,
-    points: state.taskReducer.pointsToEarn,
+    pointsToEarn: state.taskReducer.pointsToEarn,
     img: state.taskReducer.img,
     description: state.taskReducer.description
   };
