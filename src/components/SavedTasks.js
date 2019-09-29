@@ -17,7 +17,7 @@ const SavedTasks = ({ users, tasks, history }) => {
         <h1>Saved Tasks</h1>
       )}
       {
-          tasks.map(task => currentUser.tasks.includes(task.id) && <Task task={task} />)
+          tasks.map(task => currentUser.tasks.includes(task.id) && <Task history={history} task={task} />)
       }
     </TaskViewContainer>
   );
