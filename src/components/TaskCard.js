@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { deleteTask, populateForm } from '../actions/taskActions';
+import { deleteTask, populateForm, removeTask } from '../actions/taskActions';
 
 const TaskCard = ({
   tasks,
@@ -77,7 +77,7 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { deleteTask, populateForm }
+  { deleteTask, populateForm, removeTask }
 )(TaskCard);
 
 const TaskContainer = styled.div`
