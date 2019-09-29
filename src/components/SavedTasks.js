@@ -43,6 +43,6 @@ const TaskViewContainer = styled.div`
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  background: #e4d6a7;
-  padding-bottom: 50px;
+  background: #9b2915;
+  padding: 50px 0;
 `;

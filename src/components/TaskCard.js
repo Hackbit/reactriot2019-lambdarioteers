@@ -59,7 +59,7 @@ const TaskCard = ({
         <p><em><u>Description:</u></em> {description}</p>
         <p><em><u>Points:</u></em> {pointsToEarn}</p>
       </TaskDiv>
-      {user_id === user.id && (
+      {user && user_id === user.id && (
         <ButtonContainer>
           <TaskButton onClick={deleteTaskHandler}>Delete</TaskButton>
           <TaskButton onClick={populateFormHandler}>Update</TaskButton>
