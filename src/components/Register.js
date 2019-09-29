@@ -64,9 +64,7 @@ const FormikRegisterForm = withFormik({
 
   handleSubmit(values, { props, resetForm }) {
     console.log(values);
-    values.name = "";
-    values.phone = "";
-    props.addUser(values);
+    props.addUser({...values, id: Date.now()});
     resetForm();
   }
 })(Register);

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from "react-redux";
 
-const Task = ({ task, history }) => {
+const Task = ({ task, history, tasks }) => {
   const {
     id,
     name,
@@ -12,6 +13,12 @@ const Task = ({ task, history }) => {
     description
   } = task;
   const [isVolunteer] = useState(true);
+
+  const saveTask = (e) => {
+    e.stopPropagation();
+    tasks.filter(task => console.log(task.id === id && task))
+  }
+
   return (
     <TaskContainer
       onClick={() => {
@@ -23,7 +30,7 @@ const Task = ({ task, history }) => {
           {isVolunteer && (
             <AddTaskButton
               onClick={e => {
-                e.stopPropagation();
+                saveTask(e);
               }}
             >
               <i className="fas fa-plus"></i>
@@ -48,7 +55,15 @@ const Task = ({ task, history }) => {
   );
 };
 
-export default Task;
+const mapStateToProps = state => {
+  console.log(state)
+  return { tasks: state.taskReducer.tasks };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Task);
 
 const TaskContainer = styled.div`
   width: 100%;

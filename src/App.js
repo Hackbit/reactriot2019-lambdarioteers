@@ -8,6 +8,7 @@ import TaskView from "./components/TaskView";
 import TaskForm from "./components/TaskForm";
 import TaskCard from "./components/TaskCard";
 import Dashboard from "./components/Dashboard";
+import SavedTasks from "./components/SavedTasks"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/task-form" component={TaskForm} />
       <Route path="/task/:id" component={TaskCard} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/saved-tasks" component={SavedTasks} />
     </div>
   );
 }
