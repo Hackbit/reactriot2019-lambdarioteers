@@ -15,7 +15,7 @@ const Dashboard = ({ history, users }) => {
         </AddTaskButton>
       )}
       <hr />
-      <TaskView history={history} />
+      <TaskView this_user={user.id} history={history} />
     </DashboardWrapper>
   );
 };
